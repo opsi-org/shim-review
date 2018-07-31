@@ -18,38 +18,39 @@ Here's the template:
 -------------------------------------------------------------------------------
 What organization or people are asking to have this signed:
 -------------------------------------------------------------------------------
-[your text here]
+opsi is an open source OS provisioning and software deployment framework.
 
 -------------------------------------------------------------------------------
 What product or service is this for:
 -------------------------------------------------------------------------------
-[your text here]
+opsi is an open source operating system provisioning and software deployment framework.
+We want to deploy Windows with support for SecureBoot and therefore request a signing of our shim.
 
 -------------------------------------------------------------------------------
 What's the justification that this really does need to be signed for the whole world to be able to boot it:
 -------------------------------------------------------------------------------
-[your text here]
+opsi is used to deploy operating systems on a large amount of devices. It would be a disadvantage to manually deploy a key on all SecureBoot enabled machines, especially when a customer has a couple hundreds or even more than throusand machines. Therefore we request a signed SHIM to further sign the rets of our deployment with our key, which is included in the shim, to ease the deployment process.
 
 -------------------------------------------------------------------------------
 Who is the primary contact for security updates, etc.
 -------------------------------------------------------------------------------
-- Name:
-- Position:
-- Email address:
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community:
+- Name: Mathias Radtke
+- Position: Developer
+- Email address: m.radtke@uib.de
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: None
 
 -------------------------------------------------------------------------------
 Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
-- Name:
-- Position:
-- Email address:
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community:
+- Name: Niko Wenselowski
+- Position: Developer
+- Email address: n.wenselowski@uib.de
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: None
 
 -------------------------------------------------------------------------------
 What upstream shim tag is this starting from:
 -------------------------------------------------------------------------------
-[our url here]
+https://github.com/rhboot/shim/releases/tag/14
 
 -------------------------------------------------------------------------------
 URL for a repo that contains the exact code which was built to get this binary:
@@ -59,7 +60,13 @@ URL for a repo that contains the exact code which was built to get this binary:
 -------------------------------------------------------------------------------
 What patches are being applied and why:
 -------------------------------------------------------------------------------
-[your text here]
+lib directory needed to be changed, as it didn't build on Ubuntu 16.04
+diff -r shim-14/Makefile uibshim/Makefile
+76c76
+< 	LIBDIR			?= $(prefix)/lib64
+---
+> 	LIBDIR			?= $(prefix)/lib
+
 
 -------------------------------------------------------------------------------
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.

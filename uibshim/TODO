@@ -1,0 +1,14 @@
+- Versioned protocol:
+  - Make shim and the bootloaders using it express how enlightened they
+    are to one another, so we can stop earlier without tricks like the one
+    above
+  - Make a LoadImage/CheckImage/StartImage based protocol
+- Hashing of option roms:
+  - hash option roms and add them to MokListRT
+  - probably belongs in MokManager
+- Ability to specify second stage as a device path
+  - including vendor path that means "parent of this image's path"
+  - including vendor path that means "this image"
+  - including path that's like Fv() to embed images.
+
+# vim:filetype=mail:tw=74
