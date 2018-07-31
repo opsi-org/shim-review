@@ -55,7 +55,8 @@ https://github.com/rhboot/shim/releases/tag/14
 -------------------------------------------------------------------------------
 URL for a repo that contains the exact code which was built to get this binary:
 -------------------------------------------------------------------------------
-[your url here]
+https://github.com/opsi-org/shim-review/tree/uib-shim-submission
+Key is not included
 
 -------------------------------------------------------------------------------
 What patches are being applied and why:
@@ -71,21 +72,25 @@ diff -r shim-14/Makefile uibshim/Makefile
 -------------------------------------------------------------------------------
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
 -------------------------------------------------------------------------------
-[your text here]
+Ubuntu16-04 with:
+    gcc                                   4:5.3.1-1ubuntu1
+    binutils                              2.26.1-1ubuntu1~16.04.6
+    gnu-efi                               3.0.2-1ubuntu1
+    make                                  4.1-6
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 -------------------------------------------------------------------------------
-[your text here]
-
+uib-shim.log
+above mentioned patch has been adapted manually
 
 -------------------------------------------------------------------------------
 Put info about what bootloader you're using, including which patches it includes to enforce Secure Boot here:
 -------------------------------------------------------------------------------
-[your text here]
+grub 2.02~beta2-36ubuntu3
 
 -------------------------------------------------------------------------------
 Put info about what kernel you're using, including which patches it includes to enforce Secure Boot here:
 -------------------------------------------------------------------------------
-[your text here]
+Currently kernel 4.17.6, with no additional patches
 
