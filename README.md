@@ -1,30 +1,13 @@
-This repo is for review of requests for signing shim.  To create a request for review:
-
-- clone this repo
-- edit the template below
-- add the shim.efi to be signed
-- add build logs
-- commit all of that
-- tag it with a tag of the form "myorg-shim-arch-YYYYMMDD"
-- push that to github
-- file an issue at https://github.com/rhboot/shim-review/issues with a link to your tag
-
-Note that we really only have experience with using grub2 on Linux, so asking
-us to endorse anything else for signing is going to require some convincing on
-your part.
-
-Here's the template:
-
 -------------------------------------------------------------------------------
 What organization or people are asking to have this signed:
 -------------------------------------------------------------------------------
-opsi is an open source OS provisioning and software deployment framework.
+uib gmbh - we are the developers of opsi.
 
 -------------------------------------------------------------------------------
 What product or service is this for:
 -------------------------------------------------------------------------------
 opsi is an open source operating system provisioning and software deployment framework.
-We want to deploy Windows with support for SecureBoot and therefore request a signing of our shim.
+We want to deploy Windows with support for SecureBoot and therefore request a signing of our SHIM. This SHIM contains ourt company key. With this key we will sign the following data and enable an easy to use way to deploy SecureBoot via opsi.
 
 -------------------------------------------------------------------------------
 What's the justification that this really does need to be signed for the whole world to be able to boot it:
@@ -37,15 +20,15 @@ Who is the primary contact for security updates, etc.
 - Name: Mathias Radtke
 - Position: Developer
 - Email address: m.radtke@uib.de
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: None
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: C7F764E01AEEDC73
 
 -------------------------------------------------------------------------------
 Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
-- Name: Niko Wenselowski
-- Position: Developer
-- Email address: n.wenselowski@uib.de
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: None
+- Name: Erol Ülükmen
+- Position: CEO
+- Email address: e.ueluekmen@uib.de
+- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: 328EFAD0AE3A9FF2
 
 -------------------------------------------------------------------------------
 What upstream shim tag is this starting from:
@@ -62,10 +45,12 @@ Key is not included
 What patches are being applied and why:
 -------------------------------------------------------------------------------
 lib directory needed to be changed, as it didn't build on Ubuntu 16.04
+
 diff -r shim-14/Makefile uibshim/Makefile
 76c76
 < 	LIBDIR			?= $(prefix)/lib64
 ---
+
 > 	LIBDIR			?= $(prefix)/lib
 
 
