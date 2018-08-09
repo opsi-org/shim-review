@@ -4,8 +4,7 @@ Make sure you have provided the following information:
  - [X] completed README.md file with the necessary information
  - [X] shim.efi to be signed
  - [X] public portion of your certificate embedded in shim (the file passed to VENDOR_CERT_FILE)
- - [ ] any extra patches to shim via your own git tree or as files
- - [ ] any extra patches to grub via your own git tree or as files
+ - [X] any extra patches to shim via your own git tree or as files
  - [X] build logs
 
 
