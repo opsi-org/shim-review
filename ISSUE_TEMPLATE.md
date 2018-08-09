@@ -3,7 +3,7 @@ Make sure you have provided the following information:
  - [ ] link to your code branch cloned from rhboot/shim-review in the form user/repo@tag
  - [X] completed README.md file with the necessary information
  - [X] shim.efi to be signed
- - [ ] public portion of your certificate embedded in shim (the file passed to VENDOR_CERT_FILE)
+ - [X] public portion of your certificate embedded in shim (the file passed to VENDOR_CERT_FILE)
  - [ ] any extra patches to shim via your own git tree or as files
  - [ ] any extra patches to grub via your own git tree or as files
  - [X] build logs
