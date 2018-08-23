@@ -46,13 +46,17 @@ What patches are being applied and why:
 -------------------------------------------------------------------------------
 lib directory needed to be changed, as it didn't build on Ubuntu 16.04
 
-diff -r shim-14/Makefile uibshim/Makefile
-76c76
-< 	LIBDIR			?= $(prefix)/lib64
----
-
-> 	LIBDIR			?= $(prefix)/lib
-
+--- a/Makefile	2018-04-25 16:50:36.856473241 +0200
++++ b/Makefile	2017-12-19 22:52:01.000000000 +0100
+@@ -73,7 +73,7 @@
+ 		   -maccumulate-outgoing-args \
+ 		   -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI \
+ 		   -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096
+-	LIBDIR			?= $(prefix)/lib
++	LIBDIR			?= $(prefix)/lib64
+ 	ARCH_SUFFIX		?= x64
+ 	ARCH_SUFFIX_UPPER	?= X64
+ 	ARCH_LDFLAGS		?=
 
 -------------------------------------------------------------------------------
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
