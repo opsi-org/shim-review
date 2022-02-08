@@ -83,7 +83,7 @@ We can confirm that all of our shim binaries are built from the referenced tarba
 -------------------------------------------------------------------------------
 URL for a repo that contains the exact code which was built to get this binary:
 -------------------------------------------------------------------------------
-[your url here]
+https://github.com/opsi-org/shim-review
 
 -------------------------------------------------------------------------------
 What patches are being applied and why:
