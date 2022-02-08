@@ -1,7 +1,30 @@
+This repo is for review of requests for signing shim.  To create a request for review:
+
+- clone this repo
+- edit the template below
+- add the shim.efi to be signed
+- add build logs
+- add any additional binaries/certificates/SHA256 hashes that may be needed
+- commit all of that
+- tag it with a tag of the form "myorg-shim-arch-YYYYMMDD"
+- push that to github
+- file an issue at https://github.com/rhboot/shim-review/issues with a link to your branch
+- approval is ready when you have accepted tag
+
+Note that we really only have experience with using GRUB2 on Linux, so asking
+us to endorse anything else for signing is going to require some convincing on
+your part.
+
+Here's the template:
+
 -------------------------------------------------------------------------------
 What organization or people are asking to have this signed:
 -------------------------------------------------------------------------------
 uib gmbh - we are the developers of opsi.
+uib gmbh
+Bonifaziusplatz 1b
+55118 Mainz
+https://www.uib.de
 
 -------------------------------------------------------------------------------
 What product or service is this for:
@@ -17,69 +40,138 @@ opsi is used to deploy operating systems on a large amount of devices. It would 
 -------------------------------------------------------------------------------
 Who is the primary contact for security updates, etc.
 -------------------------------------------------------------------------------
-- Name: Mathias Radtke
-- Position: Developer
-- Email address: m.radtke@uib.de
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: C7F764E01AEEDC73
+- Name: Erol Ülükmen
+- Position: CEO
+- Email address: e.ueluekmen@uib.de
+- PGP key fingerprint:
+-----BEGIN PGP SIGNATURE-----
+
+wsB5BAABCAAjFiEEpbfXcPncLtDZ0uvZMo760K46n/IFAmIA3KUFAwAAAAAACgkQMo760K46n/Kr
+hAgAiVOWkSoojaYY4tNKSaBja2Yqz2TvQsWIQvh+nGqSFwzYhCbUEtjwhYehWul/9bUOAWez9qrQ
+P9Y95cU3W3N/ZfMskJ/iMCcknedKxG0mr76RIwHb6nAhtvp/y0Ff0oFpDJBOcovN1eSB8DW6xCmg
+98FpeOlbpHmRAT4AXcbpHbA8eS8YwYCodwjp/ZzFD6J/yf/A6uPRe1UnTGzso+y0mSyxmkmkkNfg
+r0VvBwSSvq/Y717tl6oBHrJjK1uceD+J6bkzjLPkrs4BCUVlAy2fQZsqJvrWvcB/TBE+yMe8LKoT
+yjqIa7M9JfEuv09uWqw7vbm09Z/srwNCD85dD06d/w==
+=v9n4
+-----END PGP SIGNATURE-----
+
+(Key should be signed by the other security contacts, pushed to a keyserver
+like keyserver.ubuntu.com, and preferably have signatures that are reasonably
+well known in the Linux community.)
 
 -------------------------------------------------------------------------------
 Who is the secondary contact for security updates, etc.
 -------------------------------------------------------------------------------
-- Name: Erol Ülükmen
-- Position: CEO
-- Email address: e.ueluekmen@uib.de
-- PGP key, signed by the other security contacts, and preferably also with signatures that are reasonably well known in the linux community: 328EFAD0AE3A9FF2
+- Name: Mathias Radtke
+- Position: Developer
+- Email address: m.radtke@uib.de
+- PGP key fingerprint: N/A
+
+(Key should be signed by the other security contacts, pushed to a keyserver
+like keyserver.ubuntu.com, and preferably have signatures that are reasonably
+well known in the Linux community.)
 
 -------------------------------------------------------------------------------
-What upstream shim tag is this starting from:
+Please create your shim binaries starting with the 15.4 shim release tar file:
+https://github.com/rhboot/shim/releases/download/15.4/shim-15.4.tar.bz2
+
+This matches https://github.com/rhboot/shim/releases/tag/15.4 and contains
+the appropriate gnu-efi source.
 -------------------------------------------------------------------------------
-https://github.com/rhboot/shim/releases/tag/14
+We can confirm that all of our shim binaries are built from the referenced tarball.
 
 -------------------------------------------------------------------------------
 URL for a repo that contains the exact code which was built to get this binary:
 -------------------------------------------------------------------------------
-https://github.com/opsi-org/shim-review/tree/uib-shim-submission
-Key is not included
+[your url here]
 
 -------------------------------------------------------------------------------
 What patches are being applied and why:
 -------------------------------------------------------------------------------
-lib directory needed to be changed, as it didn't build on Ubuntu 16.04
+Applied a patch to rename the bootloader to opsi-netboot.efi. This is now GRUB2.06 but may change in the future as we want to support HTTPS boot and therefore switch the underlying bootloader. Renaming it up front will prevent any confusion by customers who will see grubx64.efi getting loaded but not booted as it might change.
+Patch is commited ad opsi-netboot.patch
 
---- a/Makefile	2018-04-25 16:50:36.856473241 +0200
-+++ b/Makefile	2017-12-19 22:52:01.000000000 +0100
-@@ -73,7 +73,7 @@
- 		   -maccumulate-outgoing-args \
- 		   -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI \
- 		   -DNO_BUILTIN_VA_FUNCS -DMDE_CPU_X64 -DPAGE_SIZE=4096
--	LIBDIR			?= $(prefix)/lib
-+	LIBDIR			?= $(prefix)/lib64
- 	ARCH_SUFFIX		?= x64
- 	ARCH_SUFFIX_UPPER	?= X64
- 	ARCH_LDFLAGS		?=
+-------------------------------------------------------------------------------
+If bootloader, shim loading is, GRUB2: is CVE-2020-14372, CVE-2020-25632,
+ CVE-2020-25647, CVE-2020-27749, CVE-2020-27779, CVE-2021-20225, CVE-2021-20233,
+ CVE-2020-10713, CVE-2020-14308, CVE-2020-14309, CVE-2020-14310, CVE-2020-14311,
+ CVE-2020-15705, and if you are shipping the shim_lock module CVE-2021-3418
+-------------------------------------------------------------------------------
+All of the above CVEs are fixed in the upstream GRUB2 2.06 release, which is what we use.
+
+
+-------------------------------------------------------------------------------
+What exact implementation of Secureboot in GRUB2 ( if this is your bootloader ) you have ?
+* Upstream GRUB2 shim_lock verifier or * Downstream RHEL/Fedora/Debian/Canonical like implementation ?
+-------------------------------------------------------------------------------
+Upstream GRUB2 shim_lock verifier
+
+-------------------------------------------------------------------------------
+If bootloader, shim loading is, GRUB2, and previous shims were trusting affected
+by CVE-2020-14372, CVE-2020-25632, CVE-2020-25647, CVE-2020-27749,
+  CVE-2020-27779, CVE-2021-20225, CVE-2021-20233, CVE-2020-10713,
+  CVE-2020-14308, CVE-2020-14309, CVE-2020-14310, CVE-2020-14311, CVE-2020-15705,
+  and if you were shipping the shim_lock module CVE-2021-3418
+  ( July 2020 grub2 CVE list + March 2021 grub2 CVE list )
+  grub2:
+* were old shims hashes provided to Microsoft for verification
+  and to be added to future DBX update ?
+* Does your new chain of trust disallow booting old, affected by CVE-2020-14372,
+  CVE-2020-25632, CVE-2020-25647, CVE-2020-27749,
+  CVE-2020-27779, CVE-2021-20225, CVE-2021-20233, CVE-2020-10713,
+  CVE-2020-14308, CVE-2020-14309, CVE-2020-14310, CVE-2020-14311, CVE-2020-15705,
+  and if you were shipping the shim_lock module CVE-2021-3418
+  ( July 2020 grub2 CVE list + March 2021 grub2 CVE list )
+  grub2 builds ?
+-------------------------------------------------------------------------------
+All of the above CVEs are fixed in the upstream GRUB2 2.06 release, which is what we use.
+A new certiciate has been created and the old shim hash has been reported to Microsoft.
+
+-------------------------------------------------------------------------------
+If your boot chain of trust includes linux kernel, is
+"efi: Restrict efivar_ssdt_load when the kernel is locked down"
+upstream commit 1957a85b0032a81e6482ca4aab883643b8dae06e applied ?
+Is "ACPI: configfs: Disallow loading ACPI tables when locked down"
+upstream commit 75b0cea7bf307f362057cc778efe89af4c615354 applied ?
+-------------------------------------------------------------------------------
+We currently use 5.15.15 kernel and newer. It is applied.
+
+-------------------------------------------------------------------------------
+If you use vendor_db functionality of providing multiple certificates and/or
+hashes please briefly describe your certificate setup. If there are allow-listed hashes
+please provide exact binaries for which hashes are created via file sharing service,
+available in public with anonymous access for verification
+-------------------------------------------------------------------------------
+No vendor_db
+
+-------------------------------------------------------------------------------
+If you are re-using a previously used (CA) certificate, you will need
+to add the hashes of the previous GRUB2 binaries to vendor_dbx in shim
+in order to prevent GRUB2 from being able to chainload those older GRUB2
+binaries. If you are changing to a new (CA) certificate, this does not
+apply. Please describe your strategy.
+-------------------------------------------------------------------------------
+We created a new CA to prevent to boot old and boothole affected grub binaries.
 
 -------------------------------------------------------------------------------
 What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as close as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
+If the shim binaries can't be reproduced using the provided Dockerfile, please explain why that's the case and what the differences would be.
 -------------------------------------------------------------------------------
-Ubuntu16-04 with:
-    gcc                                   4:5.3.1-1ubuntu1
-    binutils                              2.26.1-1ubuntu1~16.04.6
-    gnu-efi                               3.0.2-1ubuntu1
-    make                                  4.1-6
+Distributor ID:	Ubuntu
+Description:	Ubuntu 20.04.3 LTS
+Release:	20.04
+Codename:	focal
+
+ii  binutils       2.34-6ubuntu1.3  amd64        GNU assembler, linker and binary utilities
+ii  gcc            4:9.3.0-1ubuntu2 amd64        GNU C compiler
+ii  gnu-efi        3.0.9-1          amd64        Library for developing EFI applications
 
 -------------------------------------------------------------------------------
 Which files in this repo are the logs for your build?   This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 -------------------------------------------------------------------------------
-uib-shim.log
-above mentioned patch has been adapted manually
+build.log
 
 -------------------------------------------------------------------------------
-Put info about what bootloader you're using, including which patches it includes to enforce Secure Boot here:
+Add any additional information you think we may need to validate this shim
 -------------------------------------------------------------------------------
-grub 2.02~beta2-36ubuntu3
-
--------------------------------------------------------------------------------
-Put info about what kernel you're using, including which patches it includes to enforce Secure Boot here:
--------------------------------------------------------------------------------
-Currently kernel 4.17.6, with no additional patches
 
