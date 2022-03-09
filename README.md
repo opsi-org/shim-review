@@ -43,17 +43,8 @@ Who is the primary contact for security updates, etc.
 - Name: Erol Ülükmen
 - Position: CEO
 - Email address: e.ueluekmen@uib.de
-- PGP key fingerprint:
------BEGIN PGP SIGNATURE-----
-
-wsB5BAABCAAjFiEEpbfXcPncLtDZ0uvZMo760K46n/IFAmIA3KUFAwAAAAAACgkQMo760K46n/Kr
-hAgAiVOWkSoojaYY4tNKSaBja2Yqz2TvQsWIQvh+nGqSFwzYhCbUEtjwhYehWul/9bUOAWez9qrQ
-P9Y95cU3W3N/ZfMskJ/iMCcknedKxG0mr76RIwHb6nAhtvp/y0Ff0oFpDJBOcovN1eSB8DW6xCmg
-98FpeOlbpHmRAT4AXcbpHbA8eS8YwYCodwjp/ZzFD6J/yf/A6uPRe1UnTGzso+y0mSyxmkmkkNfg
-r0VvBwSSvq/Y717tl6oBHrJjK1uceD+J6bkzjLPkrs4BCUVlAy2fQZsqJvrWvcB/TBE+yMe8LKoT
-yjqIa7M9JfEuv09uWqw7vbm09Z/srwNCD85dD06d/w==
-=v9n4
------END PGP SIGNATURE-----
+- PGP key fingerprint: 9083B7BB221D5E6578E3450D06DA6B5DFD200AAE
+- PGP key id: 0x06DA6B5DFD200AAE
 
 (Key should be signed by the other security contacts, pushed to a keyserver
 like keyserver.ubuntu.com, and preferably have signatures that are reasonably
@@ -65,7 +56,8 @@ Who is the secondary contact for security updates, etc.
 - Name: Mathias Radtke
 - Position: Developer
 - Email address: m.radtke@uib.de
-- PGP key fingerprint: N/A
+- PGP key fingerprint: D905656EDA12972F39FD9EB64719E3A9F93C6B3C
+- PGP key id: 0x4719E3A9F93C6B3C
 
 (Key should be signed by the other security contacts, pushed to a keyserver
 like keyserver.ubuntu.com, and preferably have signatures that are reasonably
