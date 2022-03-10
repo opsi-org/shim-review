@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-RUN apt-get update -y && apt-get install -y --no-install-recommends build-essential binutils gcc gnu-efi bsdmainutils \
+RUN apt-get update -y && apt-get install -y --no-install-recommends dos2unix build-essential binutils gcc gnu-efi bsdmainutils \
         # for `git clone`
         ca-certificates git \
         # for `wget`
@@ -15,6 +15,8 @@ RUN git clone https://github.com/opsi-org/shim-review.git
 WORKDIR /shim-15.4
 
 RUN patch < /shim-review/opsi-netboot.patch
+
+RUN cp /shim-review/data/sbat.opsi.csv /shim-15.4/data/
 
 RUN make VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
 
