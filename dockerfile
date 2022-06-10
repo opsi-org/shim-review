@@ -16,7 +16,7 @@ WORKDIR /shim-15.6
 
 RUN patch < /shim-review/opsi-netboot.patch
 
-RUN cp /shim-review/data/sbat.opsi.csv /shim-15.6/data/
+RUN cp /shim-review/data/sbat.opsi.csv /shim-15.6/data/sbat.csv
 
 RUN make VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
 
