@@ -206,7 +206,7 @@ grub.opsi,2,opsi,grub2,2.06,https://opsi.org`
 -------------------------------------------------------------------------------
 ### Which modules are built into your signed grub image?
 -------------------------------------------------------------------------------
-at normal tftp part_gpt part_msdos scsi linux search regexp help configfile font chain minicmd gfxterm video video_bochs video_cirrus video_colors video_fb videoinfo all_video loadbios efinet efi_gop efi_uga linuxefi efifwsetup pxe
+smbios fat normal tftp part_gpt part_msdos scsi linux search regexp help configfile font chain minicmd gfxterm video video_bochs video_cirrus video_colors video_fb videoinfo all_video loadbios efinet efi_gop efi_uga linuxefi efifwsetup pxe
 
 -------------------------------------------------------------------------------
 ### What is the origin and full version number of your bootloader (GRUB or other)?
