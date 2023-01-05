@@ -24,8 +24,8 @@ RUN make VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
 RUN sha256sum /shim-review/shimx64.efi /shim-15.7/shimx64.efi
 
 RUN objdump -j .sbat -s /shim-review/shimx64.efi
-RUN objdump -j .sbat -s /shim-15.6/shimx64.efi
+RUN objdump -j .sbat -s /shim-15.7/shimx64.efi
 
 RUN hexdump -Cv /shim-review/shimx64.efi > shim-review.hexdump
-RUN hexdump -Cv /shim-15.6/shimx64.efi > shim-build.hexdump
+RUN hexdump -Cv /shim-15.7/shimx64.efi > shim-build.hexdump
 RUN diff -u shim-review.hexdump shim-build.hexdump
