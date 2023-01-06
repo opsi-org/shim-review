@@ -580,7 +580,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	--target efi-app-x86_64 shimx64.so shimx64.efi
 ./post-process-pe -vv  shimx64.efi
 set_dll_characteristics():354: Updating DLL Characteristics from 0x0000 to 0x0100
-fix_checksum():412: Updating checksum from 0x000f3fb1 to 0x000f40b1
+fix_checksum():412: Updating checksum from 0x000f3fb2 to 0x000f40b2
 objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .dyn -j .reloc -j .eh_frame -j .sbat \
@@ -618,7 +618,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	--target efi-app-x86_64 mmx64.so mmx64.efi
 ./post-process-pe -vv  mmx64.efi
 set_dll_characteristics():354: Updating DLL Characteristics from 0x0000 to 0x0100
-fix_checksum():412: Updating checksum from 0x000d9ff3 to 0x000da0f3
+fix_checksum():412: Updating checksum from 0x000d9ff4 to 0x000da0f4
 objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .dyn -j .reloc -j .eh_frame \
@@ -626,4 +626,4 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	--target efi-app-x86_64 fbx64.so fbx64.efi
 ./post-process-pe -vv  fbx64.efi
 set_dll_characteristics():354: Updating DLL Characteristics from 0x0000 to 0x0100
-fix_checksum():412: Updating checksum from 0x00019228 to 0x00019328
+fix_checksum():412: Updating checksum from 0x00019229 to 0x00019329
