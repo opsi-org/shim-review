@@ -222,7 +222,7 @@ added grub with sbat generation 2 to vendor_dbx
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
 
-4e0d8935b307658549da5f38b1fd32b83d7621d083345759218563918e217408
+18f95466e102f504a04f4f2f62768db2cc8e5bf3835f8428de92c04d1a8a1634
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your SHIM?
@@ -244,13 +244,13 @@ No
 
 shim
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
-shim,2,UEFI shim,shim,1,https://github.com/rhboot/shim
-shim.opsi,2,opsi,shim,15.6,https://opsi.org
+shim,3,UEFI shim,shim,1,https://github.com/rhboot/shim
+shim.opsi,3,opsi,shim,15.7,https://opsi.org
 
 grub
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
 grub,3,Free Software Foundation,grub,2.06,https://www.gnu.org/software/grub/
-grub.opsi,2,opsi,grub2,2.06,https://opsi.org`
+grub.opsi,3,opsi,grub2,2.06,https://opsi.org`
 
 *******************************************************************************
 ### Which modules are built into your signed grub image?
