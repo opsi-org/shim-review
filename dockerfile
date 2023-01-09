@@ -19,7 +19,7 @@ RUN patch < /shim-review/NX.patch
 
 RUN cp /shim-review/data/sbat.opsi.csv /shim-15.7/data/sbat.csv
 
-RUN make VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
+RUN make VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der VENDOR_DBX_FILE=/shim-review/vendor_dbx.esl
 
 RUN sha256sum /shim-review/shimx64.efi /shim-15.7/shimx64.efi
 
