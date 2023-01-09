@@ -177,12 +177,7 @@ No
 ### Please describe your strategy.
 *******************************************************************************
 
-
--------------------------------------------------------------------------------
-### If you are re-using a previously used (CA) certificate, you will need to add the hashes of the previous GRUB2 binaries exposed to the CVEs to vendor_dbx in shim in order to prevent GRUB2 from being able to chainload those older GRUB2 binaries. If you are changing to a new (CA) certificate, this does not apply.
-### Please describe your strategy.
--------------------------------------------------------------------------------
-New CA has been created
+vendor_dbx.esl added with previously used GRUB2 binary
 
 *******************************************************************************
 ### What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as closely as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
