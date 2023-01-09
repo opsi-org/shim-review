@@ -178,6 +178,7 @@ No
 *******************************************************************************
 
 vendor_dbx.esl added with previously used GRUB2 binary
+Incremented UEFI shim SBAT version to 3
 
 *******************************************************************************
 ### What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as closely as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
