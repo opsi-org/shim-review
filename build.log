@@ -523,7 +523,6 @@ gcc -I/home/user/shim-15.7/gnu-efi//lib -I/home/user/shim-15.7/gnu-efi/inc -I/ho
 gcc -I/home/user/shim-15.7/gnu-efi//lib -I/home/user/shim-15.7/gnu-efi/inc -I/home/user/shim-15.7/gnu-efi/inc/x86_64 -I/home/user/shim-15.7/gnu-efi/inc/protocol -Wno-error=pragmas -mno-red-zone -mno-avx -fpic  -Os -Wall -Wextra -Wno-missing-field-initializers -Werror -fshort-wchar -fno-strict-aliasing -ffreestanding -fno-stack-protector -fno-stack-check -nostdinc   -isystem /home/user/shim-15.7/gnu-efi/../include/system -isystem /usr/lib/gcc/x86_64-linux-gnu/11/include -fno-merge-all-constants -DCONFIG_x86_64 -DGNU_EFI_USE_MS_ABI -DGNU_EFI_USE_EXTERNAL_STDARG -maccumulate-outgoing-args --std=c11 -c /home/user/shim-15.7/gnu-efi//lib/x86_64/callwrap.c -o x86_64/callwrap.o
 gcc -I/home/user/shim-15.7/gnu-efi//lib -I/home/user/shim-15.7/gnu-efi/inc -I/home/user/shim-15.7/gnu-efi/inc/x86_64 -I/home/user/shim-15.7/gnu-efi/inc/protocol -Wno-error=pragmas -mno-red-zone -mno-avx -fpic  -Os -Wall -Wextra -Wno-missing-field-initializers -Werror -fshort-wchar -fno-strict-aliasing -ffreestanding -fno-stack-protector -fno-stack-check -nostdinc   -isystem /home/user/shim-15.7/gnu-efi/../include/system -isystem /usr/lib/gcc/x86_64-linux-gnu/11/include -fno-merge-all-constants -DCONFIG_x86_64 -DGNU_EFI_USE_MS_ABI -DGNU_EFI_USE_EXTERNAL_STDARG -maccumulate-outgoing-args --std=c11 -c /home/user/shim-15.7/gnu-efi//lib/x86_64/efi_stub.S -o x86_64/efi_stub.o
 gcc-ar rv -U libefi.a boxdraw.o smbios.o console.o crc.o data.o debug.o dpath.o error.o event.o exit.o guid.o hand.o hw.o init.o lock.o misc.o pause.o print.o sread.o str.o cmdline.o runtime/rtlock.o runtime/efirtlib.o runtime/rtstr.o runtime/vm.o runtime/rtdata.o x86_64/initplat.o x86_64/math.o x86_64/setjmp.o x86_64/callwrap.o x86_64/efi_stub.o
-/usr/bin/ar: Erzeugen von libefi.a
 a - boxdraw.o
 a - smbios.o
 a - console.o
@@ -562,7 +561,6 @@ make[2]: Verzeichnis „/home/user/shim-15.7/gnu-efi/x86_64/gnuefi“ wird betre
 gcc -I/home/user/shim-15.7/gnu-efi//gnuefi -I/home/user/shim-15.7/gnu-efi/inc -I/home/user/shim-15.7/gnu-efi/inc/x86_64 -I/home/user/shim-15.7/gnu-efi/inc/protocol -Wno-error=pragmas -mno-red-zone -mno-avx -fpic  -Os -Wall -Wextra -Wno-missing-field-initializers -Werror -fshort-wchar -fno-strict-aliasing -ffreestanding -fno-stack-protector -fno-stack-check -nostdinc   -isystem /home/user/shim-15.7/gnu-efi/../include/system -isystem /usr/lib/gcc/x86_64-linux-gnu/11/include -fno-merge-all-constants -DCONFIG_x86_64 -DGNU_EFI_USE_MS_ABI -DGNU_EFI_USE_EXTERNAL_STDARG -maccumulate-outgoing-args --std=c11 -c /home/user/shim-15.7/gnu-efi//gnuefi/crt0-efi-x86_64.S -o crt0-efi-x86_64.o
 gcc -I/home/user/shim-15.7/gnu-efi//gnuefi -I/home/user/shim-15.7/gnu-efi/inc -I/home/user/shim-15.7/gnu-efi/inc/x86_64 -I/home/user/shim-15.7/gnu-efi/inc/protocol -Wno-error=pragmas -mno-red-zone -mno-avx -fpic  -Os -Wall -Wextra -Wno-missing-field-initializers -Werror -fshort-wchar -fno-strict-aliasing -ffreestanding -fno-stack-protector -fno-stack-check -nostdinc   -isystem /home/user/shim-15.7/gnu-efi/../include/system -isystem /usr/lib/gcc/x86_64-linux-gnu/11/include -fno-merge-all-constants -DCONFIG_x86_64 -DGNU_EFI_USE_MS_ABI -DGNU_EFI_USE_EXTERNAL_STDARG -maccumulate-outgoing-args --std=c11 -c /home/user/shim-15.7/gnu-efi//gnuefi/reloc_x86_64.c -o reloc_x86_64.o
 gcc-ar rv -U libgnuefi.a reloc_x86_64.o
-/usr/bin/ar: Erzeugen von libgnuefi.a
 a - reloc_x86_64.o
 make[2]: Verzeichnis „/home/user/shim-15.7/gnu-efi/x86_64/gnuefi“ wird verlassen
 mkdir -p /home/user/shim-15.7/gnu-efi/x86_64/inc
@@ -580,7 +578,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	--target efi-app-x86_64 shimx64.so shimx64.efi
 ./post-process-pe -vv  shimx64.efi
 set_dll_characteristics():354: Updating DLL Characteristics from 0x0000 to 0x0100
-fix_checksum():412: Updating checksum from 0x000f429a to 0x000f439a
+fix_checksum():412: Updating checksum from 0x000f5d01 to 0x000f5e01
 objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .dyn -j .reloc -j .eh_frame -j .sbat \
@@ -618,7 +616,7 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	--target efi-app-x86_64 mmx64.so mmx64.efi
 ./post-process-pe -vv  mmx64.efi
 set_dll_characteristics():354: Updating DLL Characteristics from 0x0000 to 0x0100
-fix_checksum():412: Updating checksum from 0x000e037f to 0x000e047f
+fix_checksum():412: Updating checksum from 0x000db8e2 to 0x000db9e2
 objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .dyn -j .reloc -j .eh_frame \
