@@ -578,7 +578,9 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .rela* -j .dyn -j .reloc -j .eh_frame \
 	-j .vendor_cert -j .sbat -j .sbatlevel \
 	--target efi-app-x86_64 shimx64.so shimx64.efi
-./post-process-pe -vv shimx64.efi
+./post-process-pe -vv  shimx64.efi
+set_dll_characteristics():354: Updating DLL Characteristics from 0x0000 to 0x0100
+fix_checksum():412: Updating checksum from 0x000e94fb to 0x000e95fb
 objcopy -D -j .text -j .sdata -j .data \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .dyn -j .reloc -j .eh_frame -j .sbat \
@@ -614,10 +616,14 @@ objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .rela* -j .dyn -j .reloc -j .eh_frame \
 	-j .vendor_cert -j .sbat -j .sbatlevel \
 	--target efi-app-x86_64 mmx64.so mmx64.efi
-./post-process-pe -vv mmx64.efi
+./post-process-pe -vv  mmx64.efi
+set_dll_characteristics():354: Updating DLL Characteristics from 0x0000 to 0x0100
+fix_checksum():412: Updating checksum from 0x000dbae2 to 0x000dbbe2
 objcopy -D -j .text -j .sdata -j .data -j .data.ident \
 	-j .dynamic -j .rodata -j .rel* \
 	-j .rela* -j .dyn -j .reloc -j .eh_frame \
 	-j .vendor_cert -j .sbat -j .sbatlevel \
 	--target efi-app-x86_64 fbx64.so fbx64.efi
-./post-process-pe -vv fbx64.efi
+./post-process-pe -vv  fbx64.efi
+set_dll_characteristics():354: Updating DLL Characteristics from 0x0000 to 0x0100
+fix_checksum():412: Updating checksum from 0x0001c2d5 to 0x0001c3d5
