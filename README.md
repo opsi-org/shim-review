@@ -15,6 +15,9 @@ Note that we really only have experience with using GRUB2 on Linux, so asking
 us to endorse anything else for signing is going to require some convincing on
 your part.
 
+Check the docs directory in this repo for guidance on submission and
+getting your shim signed.
+
 Here's the template:
 
 *******************************************************************************
@@ -98,11 +101,8 @@ https://github.com/opsi-org/shim-review
 ### What patches are being applied and why:
 *******************************************************************************
 
-Applied a patch to rename the bootloader to opsi-netboot.efi. This is now GRUB2.06 but may change in the future as we want to support HTTPS boot and therefore switch the underlying bootloader. Renaming it up front will prevent any confusion by customers who will see grubx64.efi getting loaded but not booted as it might change. As for now we will continue to use GRUB and not switch the underlying bootloader
-Patch is commited as opsi-netboot.patch
-
-In addition a patch has been applied to give the shim NX compatability as Microsoft changed in their submission policies.
-Patch is comitted as NX.patch
+A patch has been applied to give the shim NX compatability as Microsoft changed in their submission policies.
+Patch is committed as NX.patch
 
 *******************************************************************************
 ### If shim is loading GRUB2 bootloader what exact implementation of Secureboot in GRUB2 do you have? (Either Upstream GRUB2 shim_lock verifier or Downstream RHEL/Fedora/Debian/Canonical-like implementation)
@@ -111,40 +111,53 @@ Patch is comitted as NX.patch
 Upstream GRUB2 shim_lock verifier
 
 *******************************************************************************
-### If shim is loading GRUB2 bootloader and your previously released shim booted a version of grub affected by any of the CVEs in the July 2020 grub2 CVE list, the March 2021 grub2 CVE list, the June 7th 2022 grub2 CVE list, or the November 15th 2022 list, have fixes for all these CVEs been applied?
+### If shim is loading GRUB2 bootloader and your previously released shim booted a version of GRUB2 affected by any of the CVEs in the July 2020, the March 2021, the June 7th 2022, the November 15th 2022, or 3rd of October 2023 GRUB2 CVE list, have fixes for all these CVEs been applied?
 
-* CVE-2020-14372
-* CVE-2020-25632
-* CVE-2020-25647
-* CVE-2020-27749
-* CVE-2020-27779
-* CVE-2021-20225
-* CVE-2021-20233
-* CVE-2020-10713
-* CVE-2020-14308
-* CVE-2020-14309
-* CVE-2020-14310
-* CVE-2020-14311
-* CVE-2020-15705
-* CVE-2021-3418 (if you are shipping the shim_lock module)
-
-* CVE-2021-3695
-* CVE-2021-3696
-* CVE-2021-3697
-* CVE-2022-28733
-* CVE-2022-28734
-* CVE-2022-28735
-* CVE-2022-28736
-* CVE-2022-28737
-
-* CVE-2022-2601
-* CVE-2022-3775
+* 2020 July - BootHole
+  * Details: https://lists.gnu.org/archive/html/grub-devel/2020-07/msg00034.html
+  * CVE-2020-10713
+  * CVE-2020-14308
+  * CVE-2020-14309
+  * CVE-2020-14310
+  * CVE-2020-14311
+  * CVE-2020-15705
+  * CVE-2020-15706
+  * CVE-2020-15707
+* March 2021
+  * Details: https://lists.gnu.org/archive/html/grub-devel/2021-03/msg00007.html
+  * CVE-2020-14372
+  * CVE-2020-25632
+  * CVE-2020-25647
+  * CVE-2020-27749
+  * CVE-2020-27779
+  * CVE-2021-3418 (if you are shipping the shim_lock module)
+  * CVE-2021-20225
+  * CVE-2021-20233
+* June 2022
+  * Details: https://lists.gnu.org/archive/html/grub-devel/2022-06/msg00035.html, SBAT increase to 2
+  * CVE-2021-3695
+  * CVE-2021-3696
+  * CVE-2021-3697
+  * CVE-2022-28733
+  * CVE-2022-28734
+  * CVE-2022-28735
+  * CVE-2022-28736
+  * CVE-2022-28737
+* November 2022
+  * Details: https://lists.gnu.org/archive/html/grub-devel/2022-11/msg00059.html, SBAT increase to 3
+  * CVE-2022-2601
+  * CVE-2022-3775
+* October 2023 - NTFS vulnerabilities
+  * Details: https://lists.gnu.org/archive/html/grub-devel/2023-10/msg00028.html, SBAT increase to 4
+  * CVE-2023-4693
+  * CVE-2023-4692
 *******************************************************************************
 
-Yes
+Yes, all fixed for the above CVEs have been applied
 
 *******************************************************************************
-### If these fixes have been applied, have you set the global SBAT generation on your GRUB binary to 3?
+### If these fixes have been applied, is the upstream global SBAT generation in your GRUB2 binary set to 4?
+The entry should look similar to: `grub,4,Free Software Foundation,grub,GRUB_UPSTREAM_VERSION,https://www.gnu.org/software/grub/`
 *******************************************************************************
 
 Yes
@@ -173,12 +186,27 @@ All of the above commits are implemented in our linux kernel.
 No
 
 *******************************************************************************
+### Do you use an ephemeral key for signing kernel modules?
+### If not, please describe how you ensure that one kernel build does not load modules built for another kernel.
+*******************************************************************************
+
+Yes
+
+*******************************************************************************
+### If you use vendor_db functionality of providing multiple certificates and/or hashes please briefly describe your certificate setup.
+### If there are allow-listed hashes please provide exact binaries for which hashes are created via file sharing service, available in public with anonymous access for verification.
+*******************************************************************************
+
+no vendor_db functionality in use
+
+>>>>>>> upstream/main
+*******************************************************************************
 ### If you are re-using a previously used (CA) certificate, you will need to add the hashes of the previous GRUB2 binaries exposed to the CVEs to vendor_dbx in shim in order to prevent GRUB2 from being able to chainload those older GRUB2 binaries. If you are changing to a new (CA) certificate, this does not apply.
 ### Please describe your strategy.
 *******************************************************************************
 
-vendor_dbx.esl added with previously used GRUB2 binary
-Incremented UEFI shim SBAT version to 3
+vendor_dbx.esl added with previously used GRUB2 binaries
+Incremented UEFI shim SBAT version to 4
 
 *******************************************************************************
 ### What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as closely as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
@@ -216,13 +244,13 @@ https://github.com/opsi-org/shim-review/blob/master/build.log
 *******************************************************************************
 
 Updated to shim-15.7
-added grub with sbat generation 2 to vendor_dbx
+added grub with sbat generation 2 and 3 to vendor_dbx
 
 *******************************************************************************
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
 
-18f95466e102f504a04f4f2f62768db2cc8e5bf3835f8428de92c04d1a8a1634
+5f6dbecba5cfda1369388d5b2f38e8f72abd06cba243217c8637c97ebab8775b
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your SHIM?
@@ -236,33 +264,37 @@ The keys are storen on a separate machine with an encrypted harddrive. Only auth
 
 No
 
+
 *******************************************************************************
-### Do you add a vendor-specific SBAT entry to the SBAT section in each binary that supports SBAT metadata ( grub2, fwupd, fwupdate, shim + all child shim binaries )?
+### Do you add a vendor-specific SBAT entry to the SBAT section in each binary that supports SBAT metadata ( GRUB2, fwupd, fwupdate, shim + all child shim binaries )?
 ### Please provide exact SBAT entries for all SBAT binaries you are booting or planning to boot directly through shim.
 ### Where your code is only slightly modified from an upstream vendor's, please also preserve their SBAT entries to simplify revocation.
+If you are using a downstream implementation of GRUB2 (e.g. from Fedora or Debian), please
+preserve the SBAT entry from those distributions and only append your own.
+More information on how SBAT works can be found [here](https://github.com/rhboot/shim/blob/main/SBAT.md).
 *******************************************************************************
 
 shim
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
-shim,3,UEFI shim,shim,1,https://github.com/rhboot/shim
-shim.opsi,3,opsi,shim,15.7,https://opsi.org
+shim,4,UEFI shim,shim,1,https://github.com/rhboot/shim
+shim.opsi,4,opsi,shim,15.7,https://opsi.org
 
 grub
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
-grub,3,Free Software Foundation,grub,2.06,https://www.gnu.org/software/grub/
-grub.opsi,3,opsi,grub2,2.06,https://opsi.org`
+grub,4,Free Software Foundation,grub,2.12-rc1,https://www.gnu.org/software/grub/
+grub.opsi,4,opsi,grub2,2.12-rc1,https://opsi.org`
 
 *******************************************************************************
 ### Which modules are built into your signed grub image?
 *******************************************************************************
 
-smbios fat normal tftp part_gpt part_msdos scsi linux search regexp help configfile font chain minicmd gfxterm video video_bochs video_cirrus video_colors video_fb videoinfo all_video loadbios efinet efi_gop efi_uga linuxefi efifwsetup pxe
+all_video cat chain configfile echo exfat ext2 fat font gfxmenu gfxterm_background gfxterm halt http iso9660 lvm memdisk minicmd msdospart normal ntfs ntfscomp part_apple part_gpt part_msdos password password_pbkdf2 pbkdf2 png read reboot regexp scsi search serial sleep smbios tftp time tar test true video efifwsetup efinet linuxefi biosdisk gzio search_fs_file linux net pxe
 
 *******************************************************************************
 ### What is the origin and full version number of your bootloader (GRUB or other)?
 *******************************************************************************
 
-[grub2-2.06-7](https://salsa.debian.org/grub-team/grub/-/tree/debian/2.06-7)
+[grub2-2.12-rc1](https://git.savannah.gnu.org/cgit/grub.git/snapshot/grub-2.12-rc1.tar.gz)
 
 *******************************************************************************
 ### If your SHIM launches any other components, please provide further details on what is launched.
@@ -286,14 +318,16 @@ grub2 verifies signatures on booted kernels via shim.
 ### Does your SHIM load any loaders that support loading unsigned kernels (e.g. GRUB)?
 *******************************************************************************
 
-No
+No, it boots GRUB only.
 
 *******************************************************************************
 ### What kernel are you using? Which patches does it includes to enforce Secure Boot?
 *******************************************************************************
 
-linux, various versions. Satrting with 6.1.3. They include lockdown patches & ACPI patches, lockdown is enforced when booted with SecureBoot, config enforces kernel module signatures under lockdown.
+linux, various versions. Starting with 6.6.X. They include lockdown patches & ACPI patches, lockdown is enforced when booted with SecureBoot, config enforces kernel module signatures under lockdown.
 
 *******************************************************************************
 ### Add any additional information you think we may need to validate this shim.
 *******************************************************************************
+
+[your text here]
