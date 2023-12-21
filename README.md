@@ -199,7 +199,6 @@ Yes
 
 no vendor_db functionality in use
 
->>>>>>> upstream/main
 *******************************************************************************
 ### If you are re-using a previously used (CA) certificate, you will need to add the hashes of the previous GRUB2 binaries exposed to the CVEs to vendor_dbx in shim in order to prevent GRUB2 from being able to chainload those older GRUB2 binaries. If you are changing to a new (CA) certificate, this does not apply.
 ### Please describe your strategy.
@@ -250,7 +249,7 @@ added grub with sbat generation 2 and 3 to vendor_dbx
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
 
-5f6dbecba5cfda1369388d5b2f38e8f72abd06cba243217c8637c97ebab8775b
+ee28aa80b473b871e3e29bf0ad41047d705247c8d1c6341cad9d1604684a121d
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your SHIM?
@@ -263,7 +262,6 @@ The keys are storen on a separate machine with an encrypted harddrive. Only auth
 *******************************************************************************
 
 No
-
 
 *******************************************************************************
 ### Do you add a vendor-specific SBAT entry to the SBAT section in each binary that supports SBAT metadata ( GRUB2, fwupd, fwupdate, shim + all child shim binaries )?
