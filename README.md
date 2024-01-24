@@ -212,24 +212,34 @@ Incremented UEFI shim SBAT version to 4
 ### If the shim binaries can't be reproduced using the provided Dockerfile, please explain why that's the case and what the differences would be.
 *******************************************************************************
 
+```
 No LSB modules are available.
 Distributor ID:	Ubuntu
 Description:	Ubuntu 22.04.1 LTS
 Release:	22.04
 Codename:	jammy
+```
 
-ii  binutils                              2.38-4ubuntu2.1                         amd64        GNU assembler, linker and binary utilities
+```
+ii  binutils                              2.38-4ubuntu2.4                         amd64        GNU assembler, linker and binary utilities
 ii  gcc                                   4:11.2.0-1ubuntu1                       amd64        GNU C compiler
-ii  gcc-10-base:amd64                     10.4.0-4ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
-ii  gcc-11                                11.3.0-1ubuntu1~22.04                   amd64        GNU C compiler
-ii  gcc-11-base:amd64                     11.3.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
-ii  gcc-12-base:amd64                     12.1.0-2ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
+ii  gcc-10-base:amd64                     10.5.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
+ii  gcc-11                                11.4.0-1ubuntu1~22.04                   amd64        GNU C compiler
+ii  gcc-11-base:amd64                     11.4.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
+ii  gcc-11-multilib                       11.4.0-1ubuntu1~22.04                   amd64        GNU C compiler (multilib support)
+ii  gcc-12-base:amd64                     12.3.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
 ii  gcc-9                                 9.5.0-1ubuntu1~22.04                    amd64        GNU C compiler
 ii  gcc-9-base:amd64                      9.5.0-1ubuntu1~22.04                    amd64        GCC, the GNU Compiler Collection (base package)
-ii  libgcc-11-dev:amd64                   11.3.0-1ubuntu1~22.04                   amd64        GCC support library (development files)
+ii  gcc-multilib                          4:11.2.0-1ubuntu1                       amd64        GNU C compiler (multilib files)
+ii  lib32gcc-11-dev                       11.4.0-1ubuntu1~22.04                   amd64        GCC support library (32 bit development files)
+ii  lib32gcc-s1                           12.3.0-1ubuntu1~22.04                   amd64        GCC support library (32 bit Version)
+ii  libgcc-11-dev:amd64                   11.4.0-1ubuntu1~22.04                   amd64        GCC support library (development files)
 ii  libgcc-9-dev:amd64                    9.5.0-1ubuntu1~22.04                    amd64        GCC support library (development files)
-ii  libgcc-s1:amd64                       12.1.0-2ubuntu1~22.04                   amd64        GCC support library
+ii  libgcc-s1:amd64                       12.3.0-1ubuntu1~22.04                   amd64        GCC support library
+ii  libx32gcc-11-dev                      11.4.0-1ubuntu1~22.04                   amd64        GCC support library (x32 development files)
+ii  libx32gcc-s1                          12.3.0-1ubuntu1~22.04                   amd64        GCC support library (x32)
 ii  gnu-efi                               3.0.13+git20210716.269ef9d-2ubuntu1     amd64        Library for developing EFI applications
+```
 
 *******************************************************************************
 ### Which files in this repo are the logs for your build?
@@ -249,7 +259,7 @@ added grub with sbat generation 2 and 3 to vendor_dbx
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
 
-ee28aa80b473b871e3e29bf0ad41047d705247c8d1c6341cad9d1604684a121d
+70d1a24ec07850abcaf61a416f218d3276a39d66a2511b4b3cafafb248e5303d
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your SHIM?
@@ -272,16 +282,19 @@ preserve the SBAT entry from those distributions and only append your own.
 More information on how SBAT works can be found [here](https://github.com/rhboot/shim/blob/main/SBAT.md).
 *******************************************************************************
 
+```
 shim
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
 shim,4,UEFI shim,shim,1,https://github.com/rhboot/shim
 shim.opsi,4,opsi,shim,15.7,https://opsi.org
+```
 
+```
 grub
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
 grub,4,Free Software Foundation,grub,2.12-rc1,https://www.gnu.org/software/grub/
 grub.opsi,4,opsi,grub2,2.12-rc1,https://opsi.org`
-
+```
 *******************************************************************************
 ### Which modules are built into your signed grub image?
 *******************************************************************************
