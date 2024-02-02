@@ -82,10 +82,10 @@ like keyserver.ubuntu.com, and preferably have signatures that are reasonably
 well known in the Linux community.)
 
 *******************************************************************************
-### Were these binaries created from the 15.7 shim release tar?
-Please create your shim binaries starting with the 15.7 shim release tar file: https://github.com/rhboot/shim/releases/download/15.7/shim-15.7.tar.bz2
+### Were these binaries created from the 15.8 shim release tar?
+Please create your shim binaries starting with the 15.8 shim release tar file: https://github.com/rhboot/shim/releases/download/15.7/shim-15.8.tar.bz2
 
-This matches https://github.com/rhboot/shim/releases/tag/15.7 and contains the appropriate gnu-efi source.
+This matches https://github.com/rhboot/shim/releases/tag/15.8 and contains the appropriate gnu-efi source.
 
 *******************************************************************************
 
@@ -101,8 +101,7 @@ https://github.com/opsi-org/shim-review
 ### What patches are being applied and why:
 *******************************************************************************
 
-A patch has been applied to give the shim NX compatability as Microsoft changed in their submission policies.
-Patch is committed as NX.patch
+No extra patches applied
 
 *******************************************************************************
 ### If shim is loading GRUB2 bootloader what exact implementation of Secureboot in GRUB2 do you have? (Either Upstream GRUB2 shim_lock verifier or Downstream RHEL/Fedora/Debian/Canonical-like implementation)
@@ -169,6 +168,7 @@ Yes
 
 Old shim hashes have been provided to microsoft
 Chain of trust disallows booting old GRUB2 builds affected by mentioned CVEs
+SBAT Version has been incremented to prevent booting old version Shims
 
 *******************************************************************************
 ### If your boot chain of trust includes a Linux kernel:
@@ -204,8 +204,7 @@ no vendor_db functionality in use
 ### Please describe your strategy.
 *******************************************************************************
 
-vendor_dbx.esl added with previously used GRUB2 binaries
-Incremented UEFI shim SBAT version to 4
+no vendor_db functionality in use as SBAT version has been increased
 
 *******************************************************************************
 ### What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as closely as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
@@ -252,8 +251,7 @@ https://github.com/opsi-org/shim-review/blob/master/build.log
 ### What changes were made since your SHIM was last signed?
 *******************************************************************************
 
-Updated to shim-15.7
-added grub with sbat generation 2 and 3 to vendor_dbx
+Updated to shim-15.8
 
 *******************************************************************************
 ### What is the SHA256 hash of your final SHIM binary?
@@ -286,7 +284,7 @@ More information on how SBAT works can be found [here](https://github.com/rhboot
 shim
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
 shim,4,UEFI shim,shim,1,https://github.com/rhboot/shim
-shim.opsi,4,opsi,shim,15.7,https://opsi.org
+shim.opsi,4,opsi,shim,15.8,https://opsi.org
 ```
 
 ```
