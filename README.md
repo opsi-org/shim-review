@@ -257,7 +257,7 @@ Updated to shim-15.8
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
 
-70d1a24ec07850abcaf61a416f218d3276a39d66a2511b4b3cafafb248e5303d
+141cd6016ba62586059e2ab453d2d07a2e1b97516b7838dace3da71bdcdd58c5
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your SHIM?
