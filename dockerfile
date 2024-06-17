@@ -16,6 +16,8 @@ WORKDIR /shim-15.8
 
 RUN cp /shim-review/data/sbat.opsi.csv /shim-15.8/data/sbat.csv
 
+run patch < /shim-review/dell_netboot_fix.patch
+
 RUN make 'DEFAULT_LOADER=\\\\opsi-netboot.efi' VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
 
 RUN sha256sum /shim-review/shimx64.efi /shim-15.8/shimx64.efi
