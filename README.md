@@ -101,7 +101,9 @@ https://github.com/opsi-org/shim-review
 ### What patches are being applied and why:
 *******************************************************************************
 
-No extra patches applied
+dell_netboot_fix.patch has been added to fix a bug appearing on some Dell devices. 
+The issue leads to non booting devices via TFTP.
+More on this issue can be read here: https://github.com/rhboot/shim/issues/649
 
 *******************************************************************************
 ### If shim is loading GRUB2 bootloader what exact implementation of Secureboot in GRUB2 do you have? (Either Upstream GRUB2 shim_lock verifier or Downstream RHEL/Fedora/Debian/Canonical-like implementation)
@@ -204,7 +206,7 @@ no vendor_db functionality in use
 ### Please describe your strategy.
 *******************************************************************************
 
-no vendor_db functionality in use as SBAT version has been increased
+no vendor_db functionality in use as SBAT version has been increased with review #360
 
 *******************************************************************************
 ### What OS and toolchain must we use to reproduce this build?  Include where to find it, etc.  We're going to try to reproduce your build as closely as possible to verify that it's really a build of the source tree you tell us it is, so these need to be fairly thorough. At the very least include the specific versions of gcc, binutils, and gnu-efi which were used, and where to find those binaries.
@@ -220,7 +222,7 @@ Codename:	jammy
 ```
 
 ```
-ii  binutils                              2.38-4ubuntu2.4                         amd64        GNU assembler, linker and binary utilities
+ii  binutils                              2.38-4ubuntu2.6                         amd64        GNU assembler, linker and binary utilities
 ii  gcc                                   4:11.2.0-1ubuntu1                       amd64        GNU C compiler
 ii  gcc-10-base:amd64                     10.5.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
 ii  gcc-11                                11.4.0-1ubuntu1~22.04                   amd64        GNU C compiler
@@ -251,19 +253,21 @@ https://github.com/opsi-org/shim-review/blob/master/build.log
 ### What changes were made since your SHIM was last signed?
 *******************************************************************************
 
-Updated to shim-15.8
+added dell_netboot_fix.patch to fix issue https://github.com/rhboot/shim/issues/649
 
 *******************************************************************************
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
 
-141cd6016ba62586059e2ab453d2d07a2e1b97516b7838dace3da71bdcdd58c5
+9c447ae6ee1010eb19645c9479cb47c35eb4afab8b3b36eda586112c1a68c19e
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your SHIM?
 *******************************************************************************
 
-The keys are storen on a separate machine with an encrypted harddrive. Only authorized members with a specified Hardware Token have access to this machine.
+The token we use is a Hardware Token provided by our EV Certificate Issuer (Globalsign). Our signing key for the Secure Boot binaries is stored on this token, next to our EV certificate. The EV certificate itself was used to initially sign the testfile for Microsoft when joining the Microsoft Developers Program for the UEFI submissions and is NOT used to sign Kernel or Grub2 images. The Secure Boot keys are used to sign our Kernel and Grub2 images. Those Secure Boot keys match the embedded CA Cert in our shim submission.
+This token is only used on this one machine. We run automated build processes for Grub2 binaries and Linux Kernel builds. After the automated build is complete the artifacts are published on an internal only file server.
+We then download those files on the sign machine, enter the token password and sign the files with the aforementioned Secure Boot keys. Those signed files are then uploaded to the file server again. Afterwards an automated process takes over to create a package with those signed files, along with other files.
 
 *******************************************************************************
 ### Do you use EV certificates as embedded certificates in the SHIM?
@@ -291,7 +295,7 @@ shim.opsi,4,opsi,shim,15.8,https://opsi.org
 grub
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
 grub,4,Free Software Foundation,grub,2.12-rc1,https://www.gnu.org/software/grub/
-grub.opsi,4,opsi,grub2,2.12-rc1,https://opsi.org`
+grub.opsi,4,opsi,grub2,2.12,https://opsi.org`
 ```
 *******************************************************************************
 ### Which modules are built into your signed grub image?
@@ -303,7 +307,7 @@ all_video cat chain configfile echo exfat ext2 fat font gfxmenu gfxterm_backgrou
 ### What is the origin and full version number of your bootloader (GRUB or other)?
 *******************************************************************************
 
-[grub2-2.12-rc1](https://git.savannah.gnu.org/cgit/grub.git/snapshot/grub-2.12-rc1.tar.gz)
+[grub2-2.12](https://git.savannah.gnu.org/cgit/grub.git/snapshot/grub-2.12.tar.gz)
 
 *******************************************************************************
 ### If your SHIM launches any other components, please provide further details on what is launched.
