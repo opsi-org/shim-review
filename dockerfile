@@ -16,7 +16,7 @@ WORKDIR /shim-15.8
 
 RUN cp /shim-review/data/sbat.opsi.csv /shim-15.8/data/sbat.csv
 
-run patch < /shim-review/dell_netboot_fix.patch
+run patch < /shim-review/0001-shim-Allow-data-after-the-end-of-device-path-node-in.patch
 
 RUN make 'DEFAULT_LOADER=\\\\opsi-netboot.efi' VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
 
