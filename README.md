@@ -101,9 +101,10 @@ https://github.com/opsi-org/shim-review
 ### What patches are being applied and why:
 *******************************************************************************
 
-dell_netboot_fix.patch has been added to fix a bug appearing on some Dell devices. 
+0001-shim-Allow-data-after-the-end-of-device-path-node-in.patch has been added to fix a bug appearing on some Dell devices. 
 The issue leads to non booting devices via TFTP.
 More on this issue can be read here: https://github.com/rhboot/shim/issues/649
+The fix is use has been merged into the shim mainline code commit d8c86b7 (https://github.com/rhboot/shim/pull/694)
 
 *******************************************************************************
 ### If shim is loading GRUB2 bootloader what exact implementation of Secureboot in GRUB2 do you have? (Either Upstream GRUB2 shim_lock verifier or Downstream RHEL/Fedora/Debian/Canonical-like implementation)
@@ -253,13 +254,14 @@ https://github.com/opsi-org/shim-review/blob/master/build.log
 ### What changes were made since your SHIM was last signed?
 *******************************************************************************
 
-added dell_netboot_fix.patch to fix issue https://github.com/rhboot/shim/issues/649
+added 0001-shim-Allow-data-after-the-end-of-device-path-node-in.patch to fix issue https://github.com/rhboot/shim/issues/649
+This issue was fixed by https://github.com/rhboot/shim/pull/694
 
 *******************************************************************************
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
 
-9c447ae6ee1010eb19645c9479cb47c35eb4afab8b3b36eda586112c1a68c19e
+a7821074987576821b2f644ed2811137a603082cad6d77bfc8cd1f0a2e31f809
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your SHIM?
