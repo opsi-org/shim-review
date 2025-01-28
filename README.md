@@ -85,7 +85,7 @@ well known in the Linux community.)
 ### Were these binaries created from the 15.8 shim release tar?
 Please create your shim binaries starting with the 15.8 shim release tar file: https://github.com/rhboot/shim/releases/download/15.7/shim-15.8.tar.bz2
 
-This matches https://github.com/rhboot/shim/releases/tag/15.8 and contains the appropriate gnu-efi source.
+This matches https://github.com/rhboot/shim/releases/tag/15.8 and contains an updated gnu-efi source from branch 15.9 to make the shimx64.efi build as gnu-efi 15.8 didn't contain changes needed to make the shimx64.efi buildable.
 
 *******************************************************************************
 
@@ -101,10 +101,11 @@ https://github.com/opsi-org/shim-review
 ### What patches are being applied and why:
 *******************************************************************************
 
-0001-shim-Allow-data-after-the-end-of-device-path-node-in.patch has been added to fix a bug appearing on some Dell devices. 
+0001-Fall-back-to-default-loader-when-encountering-errors.patch
+0001-shim-Allow-data-after-the-end-of-device-path-node-in.patch
+Those patches have been added to fix a bug appearing on some Dell devices. 
 The issue leads to non booting devices via TFTP.
 More on this issue can be read here: https://github.com/rhboot/shim/issues/649
-The fix is use has been merged into the shim mainline code commit d8c86b7 (https://github.com/rhboot/shim/pull/694)
 
 *******************************************************************************
 ### If shim is loading GRUB2 bootloader what exact implementation of Secureboot in GRUB2 do you have? (Either Upstream GRUB2 shim_lock verifier or Downstream RHEL/Fedora/Debian/Canonical-like implementation)
@@ -254,14 +255,13 @@ https://github.com/opsi-org/shim-review/blob/master/build.log
 ### What changes were made since your SHIM was last signed?
 *******************************************************************************
 
-added 0001-shim-Allow-data-after-the-end-of-device-path-node-in.patch to fix issue https://github.com/rhboot/shim/issues/649
-This issue was fixed by https://github.com/rhboot/shim/pull/694
+added above mentiones patches to fix issue https://github.com/rhboot/shim/issues/649
 
 *******************************************************************************
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
 
-a7821074987576821b2f644ed2811137a603082cad6d77bfc8cd1f0a2e31f809
+cff21c9c058c2626cefed229e881cd8fcfc10976f76a556a8432ec2bbf277483
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your SHIM?
@@ -339,7 +339,7 @@ No, it boots GRUB only.
 ### What kernel are you using? Which patches does it includes to enforce Secure Boot?
 *******************************************************************************
 
-linux, various versions. Starting with 6.6.X. They include lockdown patches & ACPI patches, lockdown is enforced when booted with SecureBoot, config enforces kernel module signatures under lockdown.
+linux, various versions. Starting with 6.9.X. They include lockdown patches & ACPI patches, lockdown is enforced when booted with SecureBoot, config enforces kernel module signatures under lockdown.
 
 *******************************************************************************
 ### Add any additional information you think we may need to validate this shim.

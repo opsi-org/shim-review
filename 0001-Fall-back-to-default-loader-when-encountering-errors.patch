@@ -1,0 +1,45 @@
+From 98173f05b67e9de1e4ea4291b26d982b62fe56aa Mon Sep 17 00:00:00 2001
+From: Nathan O'Meara <Nathan.OMeara@tanium.com>
+Date: Thu, 20 Jun 2024 12:20:22 -0400
+Subject: [PATCH] Fall back to default loader when encountering errors on
+ network boot
+
+Only certain errors trigger fall back to the default loader name.  This
+change allows fall back when encountering `EFI_TFTP_ERROR` and
+`EFI_HTTP_ERROR`.
+
+This fixes the issue reported in
+https://github.com/rhboot/shim/issues/649 that prevents boot on some
+models of PC.
+
+Signed-off-by: Nathan O'Meara <Nathan.OMeara@tanium.com>
+---
+ shim.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/shim.c b/shim.c
+index d387a01..6845665 100644
+--- a/shim.c
++++ b/shim.c
+@@ -1222,10 +1222,15 @@ EFI_STATUS init_grub(EFI_HANDLE image_handle)
+ 					 use_fb ? FALLBACK : second_stage);
+ 	}
+ 
+-	// If the filename is invalid, or the file does not exist,
+-	// just fallback to the default loader.
++	/*
++	 * If the filename is invalid, or the file does not exist, just fall
++	 * back to the default loader.  Also fall back to the default loader
++	 * if we get a TFTP error or HTTP error.
++	 */
+ 	if (!use_fb && (efi_status == EFI_INVALID_PARAMETER ||
+-	                efi_status == EFI_NOT_FOUND)) {
++	                efi_status == EFI_NOT_FOUND ||
++	                efi_status == EFI_HTTP_ERROR ||
++	                efi_status == EFI_TFTP_ERROR)) {
+ 		console_print(
+ 			L"start_image() returned %r, falling back to default loader\n",
+ 			efi_status);
+-- 
+2.34.1
+

@@ -16,7 +16,11 @@ WORKDIR /shim-15.8
 
 RUN cp /shim-review/data/sbat.opsi.csv /shim-15.8/data/sbat.csv
 
+run rm -rf gnu-efi
+run git clone -b shim-15.9 https://github.com/rhboot/gnu-efi.git 
+
 run patch < /shim-review/0001-shim-Allow-data-after-the-end-of-device-path-node-in.patch
+run patch < /shim-review/0001-Fall-back-to-default-loader-when-encountering-errors.patch
 
 RUN make 'DEFAULT_LOADER=\\\\opsi-netboot.efi' VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
 
