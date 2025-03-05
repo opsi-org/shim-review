@@ -11,7 +11,7 @@ RUN dpkg -l
 
 RUN wget https://github.com/rhboot/shim/releases/download/16.0-rc1/shim-16.0.rc1.tar.bz2
 RUN tar -xvf shim-16.0.rc1.tar.bz2 
-RUN git clone https://github.com/opsi-org/shim-review.git
+RUN git clone -b feature/shim-16.0 https://github.com/opsi-org/shim-review.git
 WORKDIR /shim-16.0~rc1
 
 RUN cp /shim-review/data/sbat.opsi.csv /shim-16.0~rc1/data/sbat.csv
