@@ -9,26 +9,20 @@ RUN apt-get update -y && apt-get install -y --no-install-recommends dos2unix bui
 # Print installed packages and versions
 RUN dpkg -l
 
-RUN wget https://github.com/rhboot/shim/releases/download/15.8/shim-15.8.tar.bz2
-RUN tar -xvf shim-15.8.tar.bz2
+RUN wget https://github.com/rhboot/shim/releases/download/16.0/shim-16.0.tar.bz2
+RUN tar -xvf shim-16.0.tar.bz2
 RUN git clone https://github.com/opsi-org/shim-review.git
-WORKDIR /shim-15.8
+WORKDIR /shim-16.0
 
-RUN cp /shim-review/data/sbat.opsi.csv /shim-15.8/data/sbat.csv
-
-RUN rm -rf gnu-efi
-RUN git clone -b shim-15.9 https://github.com/rhboot/gnu-efi.git 
-
-RUN patch < /shim-review/0001-shim-Allow-data-after-the-end-of-device-path-node-in.patch
-RUN patch < /shim-review/0001-Fall-back-to-default-loader-when-encountering-errors.patch
+RUN cp /shim-review/data/sbat.opsi.csv /shim-16.0/data/sbat.csv
 
 RUN make 'DEFAULT_LOADER=\\\\opsi-netboot.efi' VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
 
-RUN sha256sum /shim-review/shimx64.efi /shim-15.8/shimx64.efi
+RUN sha256sum /shim-review/shimx64.efi /shim-16.0/shimx64.efi
 
 RUN objdump -j .sbat -s /shim-review/shimx64.efi
-RUN objdump -j .sbat -s /shim-15.8/shimx64.efi
+RUN objdump -j .sbat -s /shim-16.0/shimx64.efi
 
 RUN hexdump -Cv /shim-review/shimx64.efi > shim-review.hexdump
-RUN hexdump -Cv /shim-15.8/shimx64.efi > shim-build.hexdump
+RUN hexdump -Cv /shim-16.0/shimx64.efi > shim-build.hexdump
 RUN diff -u shim-review.hexdump shim-build.hexdump
