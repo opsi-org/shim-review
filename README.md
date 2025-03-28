@@ -381,6 +381,7 @@ grub
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
 grub,4,Free Software Foundation,grub,2.12,https://www.gnu.org/software/grub/
 grub.opsi,4,opsi,grub2,2.12,https://opsi.org`
+grub.opensuse,1,The openSUSE Project,grub2,2.12,mailto:security@suse.de
 ```
 *******************************************************************************
 ### If shim is loading GRUB2 bootloader, which modules are built into your signed GRUB2 image?
