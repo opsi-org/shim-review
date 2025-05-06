@@ -16,7 +16,7 @@ WORKDIR /shim-16.0
 
 RUN cp /shim-review/data/sbat.opsi.csv /shim-16.0/data/sbat.csv
 
-RUN make 'DEFAULT_LOADER=\\\\opsi-netboot.efi' VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
+RUN make 'DEFAULT_LOADER=\\\\opsi-netboot-arm64.efi' VENDOR_CERT_FILE=/shim-review/opsi-uefi-ca.der
 
 RUN sha256sum /shim-review/shimaa64.efi /shim-16.0/shimaa64.efi
 
