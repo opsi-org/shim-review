@@ -65,7 +65,7 @@ We want to deploy Windows and various Linux Distros with support for SecureBoot 
 ### What's the justification that this really does need to be signed for the whole world to be able to boot it?
 *******************************************************************************
 
-opsi is used to deploy operating systems on a large amount of devices. It would be a disadvantage to manually deploy a key on all SecureBoot enabled machines, especially when a customer has a couple hundreds or even more than throusand machines. Therefore we request a signed SHIM to further sign the rets of our deployment with our key, which is included in the shim, to ease the deployment process.
+opsi is used to deploy operating systems on a large amount of devices. It would be a disadvantage to manually deploy a key on all SecureBoot enabled machines, especially when a customer has a couple hundred or even more than thousand machines. Therefore we request a signed SHIM to further sign the rets of our deployment with our key, which is included in the shim, to ease the deployment process.
 
 *******************************************************************************
 ### Why are you unable to reuse shim from another distro that is already signed?
@@ -81,11 +81,11 @@ An authorized reviewer will initiate contact verification by sending each securi
 You will be asked to post the contents of these mails in your `shim-review` issue to prove ownership of the email addresses and PGP keys.
 *******************************************************************************
 
-- Name: Erol Ülükmen
-- Position: CEO
-- Email address: e.ueluekmen@uib.de
-- PGP key fingerprint: 9083B7BB221D5E6578E3450D06DA6B5DFD200AAE
-- PGP key id: 0x06DA6B5DFD200AAE
+- Name: Nils Dörrer
+- Position: Developer
+- Email address: n.doerrer@uib.de
+- PGP key fingerprint: D680737304A0C3C035D4E4C2F00D994C97A35699
+- PGP key id: 0xf00d994c97a35699
 
 (Key should be signed by the other security contacts, pushed to a keyserver
 like keyserver.ubuntu.com, and preferably have signatures that are reasonably
@@ -202,7 +202,7 @@ Upstream GRUB2 shim_lock verifier
   * CVE-2023-4692
 *******************************************************************************
 
-Yes, all fixed for the above CVEs have been applied
+Yes, all fixes for the above CVEs have been applied
 
 *******************************************************************************
 ### If shim is loading GRUB2 bootloader, and if these fixes have been applied, is the upstream global SBAT generation in your GRUB2 binary set to 4?
@@ -231,7 +231,7 @@ Hint: upstream kernels should have all these applied, but if you ship your own h
 If you are shipping an older kernel, double-check your sources; maybe you do not have all the patches, but ship a configuration, that does not expose the issue(s).
 *******************************************************************************
 
-All of the above mentiones commits are present in our current used Kernel 6.13.X
+All of the above mentiones commits are present in our current used Kernel 6.14.X
 
 *******************************************************************************
 ### How does your signed kernel enforce lockdown when your system runs
@@ -288,24 +288,14 @@ Codename:	jammy
 ```
 
 ```
-ii  binutils                              2.38-4ubuntu2.6                         amd64        GNU assembler, linker and binary utilities
-ii  gcc                                   4:11.2.0-1ubuntu1                       amd64        GNU C compiler
-ii  gcc-10-base:amd64                     10.5.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
-ii  gcc-11                                11.4.0-1ubuntu1~22.04                   amd64        GNU C compiler
-ii  gcc-11-base:amd64                     11.4.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
-ii  gcc-11-multilib                       11.4.0-1ubuntu1~22.04                   amd64        GNU C compiler (multilib support)
-ii  gcc-12-base:amd64                     12.3.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
-ii  gcc-9                                 9.5.0-1ubuntu1~22.04                    amd64        GNU C compiler
-ii  gcc-9-base:amd64                      9.5.0-1ubuntu1~22.04                    amd64        GCC, the GNU Compiler Collection (base package)
-ii  gcc-multilib                          4:11.2.0-1ubuntu1                       amd64        GNU C compiler (multilib files)
-ii  lib32gcc-11-dev                       11.4.0-1ubuntu1~22.04                   amd64        GCC support library (32 bit development files)
-ii  lib32gcc-s1                           12.3.0-1ubuntu1~22.04                   amd64        GCC support library (32 bit Version)
-ii  libgcc-11-dev:amd64                   11.4.0-1ubuntu1~22.04                   amd64        GCC support library (development files)
-ii  libgcc-9-dev:amd64                    9.5.0-1ubuntu1~22.04                    amd64        GCC support library (development files)
-ii  libgcc-s1:amd64                       12.3.0-1ubuntu1~22.04                   amd64        GCC support library
-ii  libx32gcc-11-dev                      11.4.0-1ubuntu1~22.04                   amd64        GCC support library (x32 development files)
-ii  libx32gcc-s1                          12.3.0-1ubuntu1~22.04                   amd64        GCC support library (x32)
-ii  gnu-efi                               3.0.13+git20210716.269ef9d-2ubuntu1     amd64        Library for developing EFI applications
+ii  binutils                   2.38-4ubuntu2.8                         amd64        GNU assembler, linker and binary utilities
+ii  gcc                        4:11.2.0-1ubuntu1                       amd64        GNU C compiler
+ii  gcc-11                     11.4.0-1ubuntu1~22.04                   amd64        GNU C compiler
+ii  gcc-11-base:amd64          11.4.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
+ii  gcc-12-base:amd64          12.3.0-1ubuntu1~22.04                   amd64        GCC, the GNU Compiler Collection (base package)
+ii  libgcc-11-dev:amd64        11.4.0-1ubuntu1~22.04                   amd64        GCC support library (development files)
+ii  libgcc-s1:amd64            12.3.0-1ubuntu1~22.04                   amd64        GCC support library
+ii  gnu-efi                    3.0.13+git20210716.269ef9d-2ubuntu1     amd64        Library for developing EFI applications
 ```
 
 *******************************************************************************
@@ -313,7 +303,8 @@ ii  gnu-efi                               3.0.13+git20210716.269ef9d-2ubuntu1   
 This should include logs for creating the buildroots, applying patches, doing the build, creating the archives, etc.
 *******************************************************************************
 
-https://github.com/opsi-org/shim-review/blob/master/build.log
+https://github.com/opsi-org/shim-review/blob/master/build-x64.log
+https://github.com/opsi-org/shim-review/blob/master/build-arm64.log
 
 *******************************************************************************
 ### What changes were made in the distro's secure boot chain since your SHIM was last signed?
@@ -321,13 +312,14 @@ For example, signing new kernel's variants, UKI, systemd-boot, new certs, new CA
 
 *******************************************************************************
 
-Updated Shim, updated Kernel
+Updated Shim, updated non-UKI-Kernel
 
 *******************************************************************************
 ### What is the SHA256 hash of your final shim binary?
 *******************************************************************************
 
-6f39a94695cc98ad31d09ef7e0261b6a61be535cfa5ac12135f7af9c738e0f0f
+744483aa349c76b25bbca926585d8a6691b882c779e22606d77706ef8916b8f1  grub-shim.arm64.efi
+9f51e57d5a434598d99772dd98364820a473fc2f99a7a9b09c70bdeb1fd68679  grub-shim.x64.efi
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your shim?
@@ -396,7 +388,7 @@ all_video cat chain configfile echo exfat ext2 fat font gfxmenu gfxterm_backgrou
 ### If you are using systemd-boot on arm64 or riscv, is the fix for [unverified Devicetree Blob loading](https://github.com/systemd/systemd/security/advisories/GHSA-6m6p-rjcq-334c) included?
 *******************************************************************************
 
-We are not using arm64 builds
+We are not using systemd-boot.
 
 *******************************************************************************
 ### What is the origin and full version number of your bootloader (GRUB2 or systemd-boot or other)?
@@ -435,7 +427,7 @@ No
 ### What kernel are you using? Which patches and configuration does it include to enforce Secure Boot?
 *******************************************************************************
 
-linux, various versions. Starting with 6.13.X. They include lockdown patches & ACPI patches, lockdown is enforced when booted with SecureBoot, config enforces kernel module signatures under lockdown.
+linux, various versions. Starting with 6.14.X. They include lockdown patches & ACPI patches, lockdown is enforced when booted with SecureBoot, config enforces kernel module signatures under lockdown.
 
 *******************************************************************************
 ### What contributions have you made to help us review the applications of other applicants?
