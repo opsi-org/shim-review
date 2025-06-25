@@ -1,30 +1,36 @@
 Confirm the following are included in your repo, checking each box:
 
- - [ ] completed README.md file with the necessary information
- - [ ] shim.efi to be signed
- - [ ] public portion of your certificate(s) embedded in shim (the file passed to VENDOR_CERT_FILE)
- - [ ] binaries, for which hashes are added to vendor_db ( if you use vendor_db and have hashes allow-listed )
- - [ ] any extra patches to shim via your own git tree or as files
- - [ ] any extra patches to grub via your own git tree or as files
- - [ ] build logs
- - [ ] a Dockerfile to reproduce the build of the provided shim EFI binaries
+ - [x] completed README.md file with the necessary information
+ - [x] grub-shim.x64.efi and grub-shim.arm64.efi to be signed
+ - [x] public portion of your certificate(s) embedded in shim (the file passed to VENDOR_CERT_FILE)
+ - [ ] binaries, for which hashes are added to vendor_db ( if you use vendor_db and have hashes allow-listed ) (no vendor_db in use)
+ - [ ] any extra patches to shim via your own git tree or as files (no extra patches)
+ - [ ] any extra patches to grub via your own git tree or as files (no extra patches)
+ - [x] build logs
+ - [x] a Dockerfile to reproduce the build of the provided shim EFI binaries
 
 *******************************************************************************
 ### What is the link to your tag in a repo cloned from rhboot/shim-review?
 *******************************************************************************
-`https://github.com/user/shim-review/tree/myorg-shim-arch-YYYYMMDD`
+`https://github.com/opsi-org/shim-review/releases/tag/opsi-shim-x86_64-aarch64-20250515`
 
 *******************************************************************************
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
-[your text here]
+744483aa349c76b25bbca926585d8a6691b882c779e22606d77706ef8916b8f1  grub-shim.arm64.efi
+9f51e57d5a434598d99772dd98364820a473fc2f99a7a9b09c70bdeb1fd68679  grub-shim.x64.efi
 
 *******************************************************************************
 ### What is the link to your previous shim review request (if any, otherwise N/A)?
 *******************************************************************************
-[your text here]
+#466
+#457
+#360
+#245
+#29
 
 *******************************************************************************
 ### If no security contacts have changed since verification, what is the link to your request, where they've been verified (if any, otherwise N/A)?
 *******************************************************************************
-[your text here]
+Primary contact changed
+Secondary contact verified in #245
