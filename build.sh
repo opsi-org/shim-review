@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export SHIM_VERSION="16.0"
+export SHIM_VERSION="16.1"
 
 set -ex
 apt update
