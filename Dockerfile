@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 
-COPY build.sh /build.sh
+COPY . /
 
 RUN if [ "$(uname -p)" = "x86_64" ]; then ARCHITECTURE="x64"; elif [ "$(uname -m)" = "aarch64" ]; then ARCHITECTURE="arm64"; else echo "Unsupported architecture: $(uname -m)"; exit 1; fi \
 	&& . /build.sh \
