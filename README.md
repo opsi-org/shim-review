@@ -65,13 +65,15 @@ We want to deploy Windows and various Linux Distros with support for SecureBoot 
 ### What's the justification that this really does need to be signed for the whole world to be able to boot it?
 *******************************************************************************
 
-opsi is used to deploy operating systems on a large amount of devices. It would be a disadvantage to manually deploy a key on all SecureBoot enabled machines, especially when a customer has a couple hundred or even more than thousand machines. Therefore we request a signed SHIM to further sign the rets of our deployment with our key, which is included in the shim, to ease the deployment process.
+opsi is a device management system used to deploy operating systems across a large number of devices.
+A signed SHIM allows us to support SecureBoot environments and enhance security by ensuring a trusted boot chain.
+Working with custom certificates would require manually installing keys on each SecureBoot-enabled device, which is impractical, especially for customers managing hundreds or even thousands of systems.
 
 *******************************************************************************
 ### Why are you unable to reuse shim from another distro that is already signed?
 *******************************************************************************
 
-We are using a self compiled Linux Kernel and Miniroot. To boot with secure boot enabled, shim needs to know the certificate of the CA used to sign the kernel image.
+Our PXE boot image is designed to support a broad range of hardware while remaining lightweight, and thus includes a self-compiled Linux kernel and GRUB 2. To maintain a trusted boot chain, these components must be signed. 
 
 *******************************************************************************
 ### Who is the primary contact for security updates, etc.?
@@ -231,7 +233,7 @@ Hint: upstream kernels should have all these applied, but if you ship your own h
 If you are shipping an older kernel, double-check your sources; maybe you do not have all the patches, but ship a configuration, that does not expose the issue(s).
 *******************************************************************************
 
-All of the above mentiones commits are present in our current used Kernel 6.14.X
+We are currently using Linux kernel 6.16, which already includes all of these patches.
 
 *******************************************************************************
 ### How does your signed kernel enforce lockdown when your system runs
@@ -318,8 +320,8 @@ Updated Shim, updated non-UKI-Kernel
 ### What is the SHA256 hash of your final shim binary?
 *******************************************************************************
 
-744483aa349c76b25bbca926585d8a6691b882c779e22606d77706ef8916b8f1  grub-shim.arm64.efi
-9f51e57d5a434598d99772dd98364820a473fc2f99a7a9b09c70bdeb1fd68679  grub-shim.x64.efi
+1f9dcb9394c5fe3550af9b129ed125f33213b29a3d7a3b91fdd09688d7b1e909  grub-shim.arm64.efi
+49717675b8391701fb8d73ed0ac277911ced10f38337d58b9c5a04cb38c5fc10  grub-shim.x64.efi
 
 *******************************************************************************
 ### How do you manage and protect the keys used in your shim?
@@ -365,7 +367,7 @@ Hint: run `objcopy --only-section .sbat -O binary YOUR_EFI_BINARY /dev/stdout` t
 shim
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
 shim,4,UEFI shim,shim,1,https://github.com/rhboot/shim
-shim.opsi,4,opsi,shim,16.0,https://opsi.org
+shim.opsi,4,opsi,shim,16.1,https://opsi.org
 ```
 
 ```
@@ -382,7 +384,7 @@ Skip this, if you're not using GRUB2.
 Hint: this is about those modules that are in the binary itself, not the `.mod` files in your filesystem.
 *******************************************************************************
 
-all_video cat chain configfile echo exfat ext2 fat font gfxmenu gfxterm_background gfxterm halt http iso9660 lvm memdisk minicmd msdospart normal part_apple part_gpt part_msdos password password_pbkdf2 pbkdf2 png read reboot regexp scsi search serial sleep smbios tftp time tar test true video efifwsetup efinet linuxefi biosdisk gzio search_fs_file linux net pxe
+all_video cat chain configfile echo efifwsetup efinet exfat ext2 fat font gfxmenu gfxterm_background gfxterm halt http iso9660 linuxefi ls lvm memdisk minicmd msdospart normal part_apple part_gpt part_msdos password password_pbkdf2 pbkdf2 png read reboot regexp scsi search serial sleep smbios tftp time tar test true video
 
 *******************************************************************************
 ### If you are using systemd-boot on arm64 or riscv, is the fix for [unverified Devicetree Blob loading](https://github.com/systemd/systemd/security/advisories/GHSA-6m6p-rjcq-334c) included?
@@ -394,7 +396,7 @@ We are not using systemd-boot.
 ### What is the origin and full version number of your bootloader (GRUB2 or systemd-boot or other)?
 *******************************************************************************
 
-[grub2-2.12](https://git.savannah.gnu.org/cgit/grub.git/snapshot/grub-2.12.tar.gz)
+[grub2-2.12](http://deb.debian.org/debian/pool/main/g/grub2/grub2_2.12.orig.tar.xz)
 
 *******************************************************************************
 ### If your shim launches any other components apart from your bootloader, please provide further details on what is launched.
@@ -427,7 +429,8 @@ No
 ### What kernel are you using? Which patches and configuration does it include to enforce Secure Boot?
 *******************************************************************************
 
-linux, various versions. Starting with 6.14.X. They include lockdown patches & ACPI patches, lockdown is enforced when booted with SecureBoot, config enforces kernel module signatures under lockdown.
+We are currently using Linux kernel 6.16, which incorporates both lockdown and ACPI patches.
+Lockdown is enforced when the system boots with Secure Boot, and the configuration enforces kernel module signatures while in lockdown mode.
 
 *******************************************************************************
 ### What contributions have you made to help us review the applications of other applicants?
