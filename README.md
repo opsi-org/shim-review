@@ -22,7 +22,6 @@ Here's the template:
 *******************************************************************************
 ### What organization or people are asking to have this signed?
 *******************************************************************************
-
 uib gmbh - we are the developers of opsi.
 uib gmbh
 Bonifaziusplatz 1b
@@ -34,6 +33,7 @@ https://www.uib.de
 The reviewers should be able to easily verify, that your organization is a legal entity, to prevent abuse.
 Provide the information, which can prove the genuineness with certainty.
 *******************************************************************************
+
 Company/tax register entries or equivalent:  
 (a link to the organization entry in your jurisdiction's register will do)  
 
@@ -42,6 +42,8 @@ jurisdication registry: Amtsgericht Mainz HRB 6942
 
 The public details of both your organization and the issuer in the EV certificate used for signing .cab files at Microsoft Hardware Dev Center File Signing Services.  
 (**not** the CA certificate embedded in your shim binary)
+
+Example:
 
 ```
 Serial Number:
@@ -108,26 +110,40 @@ like keyserver.ubuntu.com, and preferably have signatures that are reasonably
 well known in the Linux community.)
 
 *******************************************************************************
-### Were these binaries created from the 16.0 shim release tar?
-Please create your shim binaries starting with the 16.0 shim release tar file: https://github.com/rhboot/shim/releases/download/16.0/shim-16.0.tar.bz2
+### Were these binaries created from the 16.1 shim release tar?
+Please create your shim binaries starting with the 16.1 shim release tar file: https://github.com/rhboot/shim/releases/download/16.1/shim-16.1.tar.bz2
 
-This matches https://github.com/rhboot/shim/releases/tag/16.0 and contains the appropriate gnu-efi source.
+This matches https://github.com/rhboot/shim/releases/tag/16.1 and contains the appropriate gnu-efi source.
 
 Make sure the tarball is correct by verifying your download's checksum with the following ones:
 
 ```
-7b518edd63eb840081912f095ed1487a  shim-16.0.tar.bz2
-c2453b9b3c02bc01eea248e9cf634a179ff8828c  shim-16.0.tar.bz2
-d503f778dc75895d3130da07e2ff23d2393862f95b6cd3d24b10cbd4af847217  shim-16.0.tar.bz2
-b4367f3b1e0716d093f4230902e392d3228bd346e2e07a9377c498d8b3b08a5c0ad25c31aa03af66f54648618074a29b55a3e51925e5cfe5c7ac97257bd25880  shim-16.0.tar.bz2
+93f0571d0677cf584b15b46d54ae0586  shim-16.1.tar.bz2
+53a4a52f2cddd7ae880e405b4e3336a5968c5683  shim-16.1.tar.bz2
+46319cd228d8f2c06c744241c0f342412329a7c630436fce7f82cf6936b1d603  shim-16.1.tar.bz2
+ca5f80e82f3b80b622028f03ef23105c98ee1b6a25f52a59c823080a3202dd4b9962266489296e99f955eb92e36ce13e0b1d57f688350006bba45f2718f159fb  shim-16.1.tar.bz2
 ```
 
-Make sure that you've verified that your build process uses that file as a source of truth (excluding external patches) and its checksum matches. Furthermore, there's [a detached signature as well](https://github.com/rhboot/shim/releases/download/16.0/shim-16.0.tar.bz2.asc) - check with the public key that has the fingerprint `8107B101A432AAC9FE8E547CA348D61BC2713E9F` that the tarball is authentic. Once you're sure, please confirm this here with a simple *yes*.
+Make sure that you've verified that your build process uses that file
+as a source of truth (excluding external patches) and its checksum
+matches. You can also further validate the release by checking the PGP
+signature: there's [a detached
+signature](https://github.com/rhboot/shim/releases/download/16.1/shim-16.1.tar.bz2.asc)
+
+The release is signed by the maintainer Peter Jones - his master key
+has the fingerprint `B00B48BC731AA8840FED9FB0EED266B70F4FEF10` and the
+signing sub-key in the signature here has the fingerprint
+`02093E0D19DDE0F7DFFBB53C1FD3F540256A1372`. A copy of his public key
+is included here for reference:
+[pjones.asc](https://github.com/rhboot/shim-review/pjones.asc)
+
+Once you're sure that the tarball you are using is correct and
+authentic, please confirm this here with a simple *yes*.
 
 A short guide on verifying public keys and signatures should be available in the [docs](./docs/) directory.
 *******************************************************************************
 
-We can confirm that all of our shim binaries are built from the referenced tarball.
+Yes.
 
 *******************************************************************************
 ### URL for a repo that contains the exact code which was built to result in your binary:
@@ -312,6 +328,7 @@ https://github.com/opsi-org/shim-review/blob/master/build-arm64.log
 ### What changes were made in the distro's secure boot chain since your SHIM was last signed?
 For example, signing new kernel's variants, UKI, systemd-boot, new certs, new CA, etc..
 
+Skip this, if this is your first application for having shim signed.
 *******************************************************************************
 
 Updated Shim, updated non-UKI-Kernel
@@ -347,11 +364,9 @@ to say that it is a CA? See the [docs](./docs/) for more guidance
 about this.
 *******************************************************************************
 
-Yes
+Yes, it does include X509v3 Basic Constraint `CA:TRUE`.
 
 *******************************************************************************
-
-
 ### Do you add a vendor-specific SBAT entry to the SBAT section in each binary that supports SBAT metadata ( GRUB2, fwupd, fwupdate, systemd-boot, systemd-stub, shim + all child shim binaries )?
 ### Please provide the exact SBAT entries for all binaries you are booting directly through shim.
 Hint: The history of SBAT and more information on how it works can be found [here](https://github.com/rhboot/shim/blob/main/SBAT.md). That document is large, so for just some examples check out [SBAT.example.md](https://github.com/rhboot/shim/blob/main/SBAT.example.md)
@@ -377,6 +392,7 @@ grub,4,Free Software Foundation,grub,2.12,https://www.gnu.org/software/grub/
 grub.opsi,4,opsi,grub2,2.12,https://opsi.org`
 grub.opensuse,1,The openSUSE Project,grub2,2.12,mailto:security@suse.de
 ```
+
 *******************************************************************************
 ### If shim is loading GRUB2 bootloader, which modules are built into your signed GRUB2 image?
 Skip this, if you're not using GRUB2.

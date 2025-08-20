@@ -3,9 +3,9 @@ Confirm the following are included in your repo, checking each box:
  - [x] completed README.md file with the necessary information
  - [x] grub-shim.x64.efi and grub-shim.arm64.efi to be signed
  - [x] public portion of your certificate(s) embedded in shim (the file passed to VENDOR_CERT_FILE)
- - [ ] binaries, for which hashes are added to vendor_db ( if you use vendor_db and have hashes allow-listed ) (no vendor_db in use)
- - [ ] any extra patches to shim via your own git tree or as files (no extra patches)
- - [ ] any extra patches to grub via your own git tree or as files (no extra patches)
+ - [x] binaries, for which hashes are added to vendor_db ( if you use vendor_db and have hashes allow-listed ) (no vendor_db in use)
+ - [x] any extra patches to shim via your own git tree or as files (no extra patches)
+ - [x] any extra patches to grub via your own git tree or as files (no extra patches)
  - [x] build logs
  - [x] a Dockerfile to reproduce the build of the provided shim EFI binaries
 
@@ -32,5 +32,5 @@ Confirm the following are included in your repo, checking each box:
 *******************************************************************************
 ### If no security contacts have changed since verification, what is the link to your request, where they've been verified (if any, otherwise N/A)?
 *******************************************************************************
-Primary contact changed
-Secondary contact verified in #245
+Primary contact verified in 
+Secondary contact verified in #472
