@@ -12,17 +12,20 @@ Confirm the following are included in your repo, checking each box:
 *******************************************************************************
 ### What is the link to your tag in a repo cloned from rhboot/shim-review?
 *******************************************************************************
-`https://github.com/opsi-org/shim-review/releases/tag/opsi-shim-x86_64-aarch64-20250515`  # TODO
+
+`https://github.com/opsi-org/shim-review/releases/tag/opsi-shim-x86_64-aarch64-20250821`
 
 *******************************************************************************
 ### What is the SHA256 hash of your final SHIM binary?
 *******************************************************************************
-744483aa349c76b25bbca926585d8a6691b882c779e22606d77706ef8916b8f1  grub-shim.arm64.efi
-9f51e57d5a434598d99772dd98364820a473fc2f99a7a9b09c70bdeb1fd68679  grub-shim.x64.efi
+
+1f9dcb9394c5fe3550af9b129ed125f33213b29a3d7a3b91fdd09688d7b1e909  grub-shim.arm64.efi
+49717675b8391701fb8d73ed0ac277911ced10f38337d58b9c5a04cb38c5fc10  grub-shim.x64.efi
 
 *******************************************************************************
 ### What is the link to your previous shim review request (if any, otherwise N/A)?
 *******************************************************************************
+
 #466
 #457
 #360
@@ -32,5 +35,6 @@ Confirm the following are included in your repo, checking each box:
 *******************************************************************************
 ### If no security contacts have changed since verification, what is the link to your request, where they've been verified (if any, otherwise N/A)?
 *******************************************************************************
+
 Primary contact verified in #472
 Secondary contact verified in #245
