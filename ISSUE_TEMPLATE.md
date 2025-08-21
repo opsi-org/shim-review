@@ -12,7 +12,7 @@ Confirm the following are included in your repo, checking each box:
 *******************************************************************************
 ### What is the link to your tag in a repo cloned from rhboot/shim-review?
 *******************************************************************************
-`https://github.com/opsi-org/shim-review/releases/tag/opsi-shim-x86_64-aarch64-20250515`
+`https://github.com/opsi-org/shim-review/releases/tag/opsi-shim-x86_64-aarch64-20250515`  # TODO
 
 *******************************************************************************
 ### What is the SHA256 hash of your final SHIM binary?
@@ -32,5 +32,5 @@ Confirm the following are included in your repo, checking each box:
 *******************************************************************************
 ### If no security contacts have changed since verification, what is the link to your request, where they've been verified (if any, otherwise N/A)?
 *******************************************************************************
-Primary contact verified in 
-Secondary contact verified in #472
+Primary contact verified in #472
+Secondary contact verified in #245
