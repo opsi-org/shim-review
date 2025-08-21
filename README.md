@@ -115,11 +115,10 @@ Please create your shim binaries starting with the 16.1 shim release tar file: h
 
 This matches https://github.com/rhboot/shim/releases/tag/16.1 and contains the appropriate gnu-efi source.
 
-Make sure the tarball is correct by verifying your download's checksum with the following ones:
+Make sure the tarball is correct by verifying your download's checksum
+(SHA256, SHA512) with the following ones:
 
 ```
-93f0571d0677cf584b15b46d54ae0586  shim-16.1.tar.bz2
-53a4a52f2cddd7ae880e405b4e3336a5968c5683  shim-16.1.tar.bz2
 46319cd228d8f2c06c744241c0f342412329a7c630436fce7f82cf6936b1d603  shim-16.1.tar.bz2
 ca5f80e82f3b80b622028f03ef23105c98ee1b6a25f52a59c823080a3202dd4b9962266489296e99f955eb92e36ce13e0b1d57f688350006bba45f2718f159fb  shim-16.1.tar.bz2
 ```
@@ -135,7 +134,7 @@ has the fingerprint `B00B48BC731AA8840FED9FB0EED266B70F4FEF10` and the
 signing sub-key in the signature here has the fingerprint
 `02093E0D19DDE0F7DFFBB53C1FD3F540256A1372`. A copy of his public key
 is included here for reference:
-[pjones.asc](https://github.com/rhboot/shim-review/pjones.asc)
+[pjones.asc](https://github.com/rhboot/shim-review/blob/main/pjones.asc)
 
 Once you're sure that the tarball you are using is correct and
 authentic, please confirm this here with a simple *yes*.
