@@ -227,7 +227,7 @@ Skip this, if you're not using GRUB2, otherwise do you have an entry in your GRU
 `grub,4,Free Software Foundation,grub,GRUB_UPSTREAM_VERSION,https://www.gnu.org/software/grub/`?
 *******************************************************************************
 
-Yes
+We set SBAT for grub to 5 as suggested. We used the source at http://deb.debian.org/debian/pool/main/g/grub2/grub2_2.12.orig.tar.xz from October 2025.
 
 *******************************************************************************
 ### Were old shims hashes provided to Microsoft for verification and to be added to future DBX updates?
@@ -235,7 +235,7 @@ Yes
 If you had no previous signed shim, say so here. Otherwise a simple _yes_ will do.
 *******************************************************************************
 
-Old shim hashes have been provided to microsoft
+Old shim hashes have been provided to Microsoft
 Chain of trust disallows booting old GRUB2 builds affected by mentioned CVEs
 SBAT Version has been incremented to prevent booting old version Shims
 
@@ -387,7 +387,7 @@ shim.opsi,4,opsi,shim,16.1,https://opsi.org
 ```
 grub
 sbat,1,SBAT Version,sbat,1,https://github.com/rhboot/shim/blob/main/SBAT.md
-grub,4,Free Software Foundation,grub,2.12,https://www.gnu.org/software/grub/
+grub,5,Free Software Foundation,grub,2.12,https://www.gnu.org/software/grub/
 grub.opsi,4,opsi,grub2,2.12,https://opsi.org`
 grub.opensuse,1,The openSUSE Project,grub2,2.12,mailto:security@suse.de
 ```
@@ -460,4 +460,4 @@ For newcomers, the applications labeled as [*easy to review*](https://github.com
 ### Add any additional information you think we may need to validate this shim signing application.
 *******************************************************************************
 
-Our grub uses the current OpenSUSE Tumbleweed patchset for Grub 2.12
+Our grub uses OpenSUSE Tumbleweed patchset 61.1 (September 2025) for Grub 2.12
